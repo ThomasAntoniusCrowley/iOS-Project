@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20DF4D21DF3252000B8FA07 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */; };
+		D20DF4D41DF3253C00B8FA07 /* EventsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D31DF3253C00B8FA07 /* EventsAPI.swift */; };
 		D24087821DF09B6200CCE0A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24087811DF09B6200CCE0A6 /* AppDelegate.swift */; };
 		D24087841DF09B6200CCE0A6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D24087831DF09B6200CCE0A6 /* GameScene.sks */; };
 		D24087861DF09B6200CCE0A6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D24087851DF09B6200CCE0A6 /* Actions.sks */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		D20DF4D31DF3253C00B8FA07 /* EventsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAPI.swift; sourceTree = "<group>"; };
 		D240877E1DF09B6200CCE0A6 /* Gumball Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gumball Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24087811DF09B6200CCE0A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D24087831DF09B6200CCE0A6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -109,9 +113,11 @@
 				D24087871DF09B6200CCE0A6 /* GameScene.swift */,
 				D24087891DF09B6200CCE0A6 /* GameViewController.swift */,
 				D240878B1DF09B6200CCE0A6 /* Main.storyboard */,
+				D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */,
 				D240878E1DF09B6200CCE0A6 /* Assets.xcassets */,
 				D24087901DF09B6200CCE0A6 /* LaunchScreen.storyboard */,
 				D24087931DF09B6200CCE0A6 /* Info.plist */,
+				D20DF4D31DF3253C00B8FA07 /* EventsAPI.swift */,
 			);
 			path = "Gumball Events";
 			sourceTree = "<group>";
@@ -270,7 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20DF4D41DF3253C00B8FA07 /* EventsAPI.swift in Sources */,
 				D24087881DF09B6200CCE0A6 /* GameScene.swift in Sources */,
+				D20DF4D21DF3252000B8FA07 /* WeatherAPI.swift in Sources */,
 				D240878A1DF09B6200CCE0A6 /* GameViewController.swift in Sources */,
 				D24087821DF09B6200CCE0A6 /* AppDelegate.swift in Sources */,
 			);
@@ -517,6 +525,7 @@
 				D24087AE1DF09B6200CCE0A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D24087AF1DF09B6200CCE0A6 /* Build configuration list for PBXNativeTarget "Gumball EventsTests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +534,7 @@
 				D24087B11DF09B6200CCE0A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D24087B21DF09B6200CCE0A6 /* Build configuration list for PBXNativeTarget "Gumball EventsUITests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +543,7 @@
 				D24087B41DF09B6200CCE0A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
