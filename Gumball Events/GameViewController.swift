@@ -30,7 +30,10 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
             
-            postKey()
+            let eventStr: EventsStream = EventsStream()
+            let num: Int = eventStr.getTotItems()
+            print("total number of events \(num)")
+            
         }
     }
 

@@ -49,9 +49,7 @@ class EventsStream: NSObject
     var events: [Event] = []
     
     
-
 func getResponse()
-
 {
     let config = URLSessionConfiguration.default
     let session = URLSession(configuration: config)
@@ -82,5 +80,44 @@ func getResponse()
 }
     
     
-    func
+    func getTotItems()->Int
+    {
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
+        print("Set up session")
+
+        
+        let eventTask = session.dataTask(with: baseURL, completionHandler: {
+            (body, response, error) in
+            
+            print(response)
+            if error != nil {
+                
+                print("Error: " + error!.localizedDescription)
+            } else {
+                
+                do {
+                    
+                    if let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? [String: Any] {
+//                        print(json)
+                        let total_items_str = (json["total_items"] as? String)!
+                        print ("this is what you are looking for\n\n")
+                        print (total_items_str)
+                        self.total_items = Int(total_items_str)!
+//                        }
+
+                    }
+                } catch {
+                    
+                    print("error in JSONSerialization")
+                }
+            }
+        })
+        eventTask.resume()
+        
+        return total_items
+
+    }
+    
 }
