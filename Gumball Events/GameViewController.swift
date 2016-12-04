@@ -11,7 +11,9 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    
+    @IBOutlet weak var weatherImg: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +25,14 @@ class GameViewController: UIViewController {
                 
                 // Present the scene
                 view.presentScene(scene)
+                let weatherObj: WeatherAPI = WeatherAPI()
+                //weatherObj.getResponse()
+                let img: UIImage? = weatherObj.getWeatherImage()
+                if (img != nil) {
+                    weatherImg.image = img
+                    view.addSubview(weatherImg)
+                }
+                
             }
             
             view.ignoresSiblingOrder = true
@@ -36,6 +46,8 @@ class GameViewController: UIViewController {
             
         }
     }
+    
+    
 
     override var shouldAutorotate: Bool {
         return true
