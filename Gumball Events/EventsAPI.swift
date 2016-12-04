@@ -36,14 +36,26 @@ let key = "2Qm4LQs466gpMpnV"
 //task.resume()
 //}
 
+class EventsStream: NSObject
+{
+    var total_items: Int = 0
+    var page_size: Int = 0
+    var page_count: Int = 0
+    var page_number: Int = 0
+    var page_items: Int = 0
+    var first_item: Int = 0
+    var last_item: Int = 0
+    var search_time: Float = 0
+    var events: [Event] = []
+    
+    
 
-
-func postKey()
+func getResponse()
 
 {
     let config = URLSessionConfiguration.default
     let session = URLSession(configuration: config)
-    let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&keywords=books&location=San+Diego&date=Futureo")!
+    let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
     print("Set up session")
     
     let eventTask = session.dataTask(with: baseURL, completionHandler: {
@@ -68,4 +80,4 @@ func postKey()
     })
     eventTask.resume()
 }
-
+}

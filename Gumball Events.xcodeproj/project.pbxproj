@@ -19,6 +19,7 @@
 		D24087921DF09B6200CCE0A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24087901DF09B6200CCE0A6 /* LaunchScreen.storyboard */; };
 		D240879D1DF09B6200CCE0A6 /* Gumball_EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240879C1DF09B6200CCE0A6 /* Gumball_EventsTests.swift */; };
 		D24087A81DF09B6200CCE0A6 /* Gumball_EventsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24087A71DF09B6200CCE0A6 /* Gumball_EventsUITests.swift */; };
+		D287522C1DF46F4B0022F859 /* eventObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = D287522B1DF46F4B0022F859 /* eventObj.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		D24087A31DF09B6200CCE0A6 /* Gumball EventsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gumball EventsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24087A71DF09B6200CCE0A6 /* Gumball_EventsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gumball_EventsUITests.swift; sourceTree = "<group>"; };
 		D24087A91DF09B6200CCE0A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D287522B1DF46F4B0022F859 /* eventObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventObj.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				D24087901DF09B6200CCE0A6 /* LaunchScreen.storyboard */,
 				D24087931DF09B6200CCE0A6 /* Info.plist */,
 				D20DF4D31DF3253C00B8FA07 /* EventsAPI.swift */,
+				D287522B1DF46F4B0022F859 /* eventObj.swift */,
 			);
 			path = "Gumball Events";
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D287522C1DF46F4B0022F859 /* eventObj.swift in Sources */,
 				D20DF4D41DF3253C00B8FA07 /* EventsAPI.swift in Sources */,
 				D24087881DF09B6200CCE0A6 /* GameScene.swift in Sources */,
 				D20DF4D21DF3252000B8FA07 /* WeatherAPI.swift in Sources */,
