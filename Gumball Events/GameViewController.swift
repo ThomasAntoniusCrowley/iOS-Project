@@ -29,7 +29,10 @@ class GameViewController: UIViewController {
             
            
         }
-        postKey()
+        let evStr: EventsStream = EventsStream()
+        evStr.getResponse()
+        let num: Int = evStr.getTotItems()
+        print("the number is \(num)")
     }
     override var shouldAutorotate: Bool {
         return true
