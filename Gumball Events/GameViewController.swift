@@ -5,15 +5,10 @@
 //  Created by Thomas Crowley [sc14talc] on 01/12/2016.
 //  Copyright © 2016 Thomas Crowley [sc14talc]. All rights reserved.
 //
-
 import UIKit
 import SpriteKit
 import GameplayKit
-
 class GameViewController: UIViewController {
-    
-    @IBOutlet weak var weatherImg: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,14 +20,6 @@ class GameViewController: UIViewController {
                 
                 // Present the scene
                 view.presentScene(scene)
-                let weatherObj: WeatherAPI = WeatherAPI()
-                //weatherObj.getResponse()
-                let img: UIImage? = weatherObj.getWeatherImage()
-                if (img != nil) {
-                    weatherImg.image = img
-                    view.addSubview(weatherImg)
-                }
-                
             }
             
             view.ignoresSiblingOrder = true
@@ -40,19 +27,12 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
             
-            let eventStr: EventsStream = EventsStream()
-            let num: Int = eventStr.getTotItems()
-            print("total number of events \(num)")
-            
+           
         }
     }
-    
-    
-
     override var shouldAutorotate: Bool {
         return true
     }
-
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -60,12 +40,10 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
     override var prefersStatusBarHidden: Bool {
         return true
     }
