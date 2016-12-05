@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
             
            
         }
+        postKey()
     }
     override var shouldAutorotate: Bool {
         return true
