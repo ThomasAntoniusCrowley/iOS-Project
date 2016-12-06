@@ -14,26 +14,22 @@ typealias ServiceResponse = (String, NSError?) -> Void
 
 class WeatherAPI {
    
+    var iconCode: String
+    
     init() {
+        iconCode = ""
         getResponse()
     }
     
-    func getResponse() -> UIImage? {
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
+    func getResponse() -> Void {
+//        let config = URLSessionConfiguration.default
+//        let session = URLSession(configuration: config)
         let baseURL = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=Leeds,UK&APPID=a225644333c3c9caf0e647bb3385a4cc")!
         var iconCode: String = ""
-        var img: UIImage?
         print("Set up session")
         
-        var request = URLRequest(url: NSURL(string: "http://api.openweathermap.org/data/2.5/weather?q=Leeds,UK&APPID=a225644333c3c9caf0e647bb3385a4cc") as! URL)
-        let semaphore = DispatchSemaphore(value: 0)
-        var error: NSErrorPointer = nil
-        var data: NSData
-        
-        URLSession.shared.dataTask(with: baseURL {
-            (body, response, error) -> UIImage in
-            //data = body
+        URLSession.shared.dataTask(with: baseURL, completionHandler: {
+            (body, response, error) in
             
             if error != nil {
                 print("Error: " + error!.localizedDescription)
@@ -46,18 +42,14 @@ class WeatherAPI {
                     print(weather)
                     let icon = String(describing: weather["icon"]!)
                     let iconArr: [String] = icon.components(separatedBy: "\n")[1].components(separatedBy: "    ")
-                    let iconCode = iconArr[1]
+                    iconCode = iconArr[1]
                     print(iconCode)
-                    img = self.getWeatherImage(icon: iconCode)
-                    return img!
-                    semaphore.signal()
                 } catch {
                     print("error in JSONSerialization")
                     
                 }
-                semaphore.wait(timeout: .distantFuture)
             }
-        }).resume
+        }).resume()
     }
     
     
@@ -66,8 +58,8 @@ class WeatherAPI {
         //let session = URLSession(configuration: config)
         var img: UIImage? = nil
         print("ICONCODE")
-        print(iconCode)
-        if let imgUrl = NSURL(string: "http://openweathermap.org/img/w/" + iconCode) {
+        print(icon)
+        if let imgUrl = NSURL(string: "http://openweathermap.org/img/w/" + icon) {
             print(imgUrl)
             if let imgData = NSData(contentsOf: imgUrl as URL) {
                 print("Getting image data")
