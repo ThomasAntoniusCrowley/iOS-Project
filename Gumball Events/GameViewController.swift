@@ -9,6 +9,10 @@ import UIKit
 import SpriteKit
 import GameplayKit
 class GameViewController: UIViewController {
+    
+    let eventSt: EventsStream = EventsStream(Location: "somewhere", DateFilter: "Sometime", Keywords: "words")
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,11 +33,8 @@ class GameViewController: UIViewController {
             
            
         }
-        let evStr: EventsStream = EventsStream()
-        evStr.getResponse()
-        let num: Int = evStr.getTotItems()
-        print("the number is \(num)")
-    }
+      
+            }
     override var shouldAutorotate: Bool {
         return true
     }
