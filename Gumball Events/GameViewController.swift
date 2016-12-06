@@ -11,7 +11,8 @@ import GameplayKit
 class GameViewController: UIViewController {
     
     let eventSt: EventsStream = EventsStream(Location: "somewhere", DateFilter: "Sometime", Keywords: "words")
-
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,11 @@ class GameViewController: UIViewController {
             
            
         }
-      
+        
+        let streamDescription = self.eventSt.description
+        print(streamDescription)
+        
+        
             }
     override var shouldAutorotate: Bool {
         return true
