@@ -10,6 +10,8 @@ let key = "2Qm4LQs466gpMpnV"
 
 class EventsStream: CustomStringConvertible
 {
+    
+//    TODO: fix the class so it actually works
     var city: String = ""
     var date: String = ""
     var keywords: String = ""
@@ -21,11 +23,11 @@ class EventsStream: CustomStringConvertible
     var first_item: Int = 0
     var last_item: Int = 0
     var search_time: Float = 0
-    // var events: [Event] = []
+    var events: [Event] = []
 
     var description: String
     {
-      return "this is the description"
+      return "There are \(total_items) events near you"
     }
 
   func getResponse()
@@ -125,7 +127,7 @@ class EventsStream: CustomStringConvertible
                  do {
 
                      if let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? [String: Any] {
-                         //                        print(json)
+                                                 print(json)
                         let total_items_str = (json["total_items"] as? String)!
 //                        print ("this is what you are looking for\n\n")
 //                        print (total_items_str)
@@ -137,12 +139,16 @@ class EventsStream: CustomStringConvertible
                         self.page_count = Int(page_count_str)!
                         let page_number_str = (json["page_number"] as? String)!
                         self.page_number = Int(page_number_str)!
-                        let page_items_str = (json["page_items"] as? String)!
-                        self.page_items = Int(page_items_str)!
-                        let first_item_str = (json["first_item"] as? String)!
-                        self.first_item = Int(first_item_str)!
-                        //                         self.first_item = (json["first_item"] as? Int)!
-//                         self.last_item = (json["last_item"] as? Int)!
+//                        TODO: fix this so it runs properly
+//                        let page_items_str = json["page_items"] as? String)!
+//                        self.page_items = Int(page_items_str)!
+//                        let first_item_str = (json["first_item"] as? String)!
+//                        self.first_item = Int(first_item_str)!
+//                        let last_item_str = (json["last_item"] as? String)!
+//                        self.last_item = Int(last_item_str)!
+//                        let search_time_str = (json["search_time"] as? String)!
+//                        self.search_time = Float(search_time_str)!
+                                               //                         self.last_item = (json["last_item"] as? Int)!
 //                         self.search_time = (json["search_time"] as? Float)!
 
                      }
@@ -154,6 +160,44 @@ class EventsStream: CustomStringConvertible
          })
          eventTask.resume()
      }
+    
+    
+    func populateEventArray()
+    {
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
+        print("Set up session")
+        
+        //        var total_items: Int = 123456789
+        let eventTask = session.dataTask(with: baseURL, completionHandler: {
+            (body, response, error) in
+            
+            print(response)
+            if error != nil {
+                
+                print("Error: " + error!.localizedDescription)
+            } else {
+                
+                do {
+                    
+                    if let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? [String: Any]
+                    {
+//                        TODO: impliment method here to handle this
+//                        let event =
+                        
+                    }
+                }
+                catch
+                {
+                    print("error in JSONSerialization")
+                }
+            }
+        })
+        eventTask.resume()
+
+    }
+    
 
 
   init(Location: String, DateFilter: String, Keywords: String)
