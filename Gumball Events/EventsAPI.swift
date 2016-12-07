@@ -25,17 +25,26 @@ class EventsStream: CustomStringConvertible
     var search_time: Float = 0
     var events: [Event] = []
     var semaphore: DispatchSemaphore
-
+    var baseAddr: String = "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&"
+    var baseURL: URL = URL(string: "")!
+    
     var description: String
     {
       return "There are \(total_items) events near you"
     }
 
+    func getURL()
+    {
+//        var baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
+        
+        self.baseAddr = baseAddr + "location=\(city)&date=\(date)&q=\(keywords)"
+        self.baseURL = URL(string: baseAddr)!
+    }
   func getResponse()
   {
       let config = URLSessionConfiguration.default
       let session = URLSession(configuration: config)
-      let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
+    
       print("Set up session")
 
       let eventTask = session.dataTask(with: baseURL, completionHandler: {
@@ -62,57 +71,12 @@ class EventsStream: CustomStringConvertible
   }
 
 
-//    func getTotItems()->Int
-//    {
-////        var total_items: Int = 69696969
-//        let config = URLSessionConfiguration.default
-//        let session = URLSession(configuration: config)
-//        let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
-//        print("Set up session")
-//
-//        let eventTask = session.dataTask(with: baseURL, completionHandler:
-//          {
-//            (body, response, error) in
-//
-//            print(response)
-//            if error != nil {
-//
-//                print("Error: " + error!.localizedDescription)
-//            }
-//            else
-//            {
-//
-//                do
-//                {
-//
-//                    if let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? [String: Any]
-//                    {
-////                        print(json)
-//                        let total_items_str = (json["total_items"] as? String)!
-//                        print ("this is what you are looking for\n\n")
-//                        print (total_items_str)
-//                        self.total_items = Int(total_items_str)!
-//                    }
-//                }
-//                catch
-//                {
-//
-//                    print("error in JSONSerialization")
-//                }
-//            }
-//        })
-//        eventTask.resume()
-//
-//        return total_items
-//    }
 
-
-//
  func getTheHeader()
      {
          let config = URLSessionConfiguration.default
          let session = URLSession(configuration: config)
-         let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
+        
          print("Set up session")
 
          //        var total_items: Int = 123456789
@@ -169,7 +133,7 @@ class EventsStream: CustomStringConvertible
     {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
-        let baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
+        
         print("Set up session")
         
         //        var total_items: Int = 123456789
@@ -225,7 +189,7 @@ class EventsStream: CustomStringConvertible
 //                        var created = jsonEvent["created"]!
 //                        var owner = jsonEvent["owner"]!
 //                        var modified = jsonEvent["modified"]!
-                        let eventObj: Event = Event(eventID: id as! String, URLAddress: url as! String, eventTitle: title as! String, eventStartTime: start_time as! String, venueID: venue_id as! String, venueURL: venue_url as! String, venueAddress: venue_address as! String, cityName: city_name as! String, regionName: region_name as! String, regionAbbr: region_abbr as! String, postCode: postal_code as! String, country: country_name as! String, latitude: latitude as! Float, longitude: longitude as! Float)
+                        let eventObj: Event = Event(eventID: id , URLAddress: url , eventTitle: title , eventStartTime: start_time , venueID: venue_id , venueURL: venue_url , venueAddress: venue_address , cityName: city_name , regionName: region_name , regionAbbr: region_abbr , postCode: postal_code , country: country_name , latitude: latitude , longitude: longitude )
 //                        print("ding!!!\n")
                         self.events.append(eventObj)
                     }
@@ -251,11 +215,14 @@ class EventsStream: CustomStringConvertible
 
     init(Location: String, DateFilter: String, Keywords: String, Semaphore: inout DispatchSemaphore)
       {
+        self.semaphore = Semaphore
+        self.getURL()
         self.city = Location
         self.date = DateFilter
         self.keywords = Keywords
         self.semaphore = Semaphore
 //        getResponse()
+        getURL()
         getTheHeader()
         populateEventArray()
       }
