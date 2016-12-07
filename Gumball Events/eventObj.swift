@@ -39,6 +39,7 @@ class Event: CustomStringConvertible
     {
         return "\(id)/\(title) is occuring at \(venue_address)"
     }
+    
     func getLatLong()->(Float, Float)
     {
         /**
