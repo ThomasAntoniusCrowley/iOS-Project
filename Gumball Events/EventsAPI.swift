@@ -188,12 +188,57 @@ class EventsStream: CustomStringConvertible
 //                    eventArr = NSDictionary(eventArr)
 //                        print(eventArr)
                     let jsonEventsArr = eventArr["event"]! //as! NSDictionary
-                    let jsonEvents:NSDictionary = jsonEventsArr[0]! as! NSDictionary
-                    print("the events are as follows.....")
-                    print(type(of:jsonEvents))
-                    print(jsonEvents)
-                    print(".... end of the output")
-                    //print(json?["events"])
+                    let arraySize = jsonEventsArr.count - 1
+                    print("looping through all the events....")
+                    for i in 0...arraySize
+                    {
+                        let jsonEvent:NSDictionary = (jsonEventsArr[i]! as! NSDictionary)
+//                        print(type(of: jsonEvent))
+                   
+                        let id: String = jsonEvent["id"]! as! String
+                        let url: String = jsonEvent["url"]! as! String
+                        let title: String = jsonEvent["title"]! as! String
+//                        let event_description: String =  jsonEvent["description"]! as! String
+                        let start_time: String = jsonEvent["start_time"]! as! String
+//                        let stop_time: String = jsonEvent["stop_time"]! as! String
+                        let venue_id: String = jsonEvent["venue_id"]! as! String
+                        let venue_url: String = jsonEvent["venue_url"]! as! String
+                        //    var venue_display: String = ""
+                        let venue_address: String = jsonEvent["venue_address"]! as! String
+                        let city_name: String = jsonEvent["city_name"]! as! String
+                        let region_name: String = jsonEvent["region_name"]! as! String
+                        let region_abbr: String = jsonEvent["region_abbr"]! as! String
+                        let postal_code: String = jsonEvent["postal_code"]! as! String
+                        let country_name: String = jsonEvent["country_name"]! as! String
+//                        let all_day: Int = jsonEvent["all_day"]! as! Int
+                        let latitude: Float = Float(jsonEvent["latitude"]! as! String)!
+                        let longitude: Float = Float(jsonEvent["longitude"]! as! String)!
+
+                        
+                        
+                        
+//                        var geocode_type = jsonEvent["geocode_type"]!
+//                        var trackback_count = jsonEvent["trackback_count"]!
+//                        var calendar_count = jsonEvent["calendar_count"]!
+//                        var comment_count = jsonEvent["comment_count"]!
+//                        var link_count = jsonEvent["link_count"]!
+//                        var created = jsonEvent["created"]!
+//                        var owner = jsonEvent["owner"]!
+//                        var modified = jsonEvent["modified"]!
+                        let eventObj: Event = Event(eventID: id as! String, URLAddress: url as! String, eventTitle: title as! String, eventStartTime: start_time as! String, venueID: venue_id as! String, venueURL: venue_url as! String, venueAddress: venue_address as! String, cityName: city_name as! String, regionName: region_name as! String, regionAbbr: region_abbr as! String, postCode: postal_code as! String, country: country_name as! String, latitude: latitude as! Float, longitude: longitude as! Float)
+//                        print("ding!!!\n")
+                        self.events.append(eventObj)
+                    }
+                    
+                    print("events array has been populated and there are \(self.events.count) events near you")
+                    
+//                    let jsonEvents:NSDictionary = jsonEventsArr[0]! as! NSDictionary
+//                    print("the events are as follows.....")
+//                    print(type(of:jsonEvents))
+////                    print(jsonEventsArr.count)
+//                    print(jsonEvents)
+//                    print(".... end of the output")
+//                    //print(json?["events"])
                 } catch {
                     print("error in JSONSerialization")
                     
