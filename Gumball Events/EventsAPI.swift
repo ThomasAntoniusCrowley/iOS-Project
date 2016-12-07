@@ -24,6 +24,7 @@ class EventsStream: CustomStringConvertible
     var last_item: Int = 0
     var search_time: Float = 0
     var events: [Event] = []
+    var semaphore: DispatchSemaphore
 
     var description: String
     {
@@ -129,8 +130,8 @@ class EventsStream: CustomStringConvertible
                      if let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? [String: Any] {
                                                  print(json)
                         let total_items_str = (json["total_items"] as? String)!
-//                        print ("this is what you are looking for\n\n")
-//                        print (total_items_str)
+                        print ("this is what you are looking for\n\n")
+                        print (total_items_str)
                         self.total_items = Int(total_items_str)!
                         
                         let page_size_str = (json["page_size"] as? String)!
@@ -151,7 +152,9 @@ class EventsStream: CustomStringConvertible
                                                //                         self.last_item = (json["last_item"] as? Int)!
 //                         self.search_time = (json["search_time"] as? Float)!
 
-                     }
+                        self.semaphore.signal()
+                        
+                    }
                  } catch {
 
                      print("error in JSONSerialization")
@@ -170,43 +173,46 @@ class EventsStream: CustomStringConvertible
         print("Set up session")
         
         //        var total_items: Int = 123456789
-        let eventTask = session.dataTask(with: baseURL, completionHandler: {
+        URLSession.shared.dataTask(with: baseURL, completionHandler: {
             (body, response, error) in
             
-            print(response)
             if error != nil {
-                
                 print("Error: " + error!.localizedDescription)
-            } else {
                 
+            } else {
                 do {
-                    
-                    if let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? [String: Any]
-                    {
-//                        TODO: impliment method here to handle this
-//                        let event =
-                        
-                    }
-                }
-                catch
-                {
+                    let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? NSDictionary
+////                    print(json)
+                    print("attempting to populate event array......")
+                    var eventArr: [String: AnyObject] = json?["events"]! as! [String: AnyObject]
+//                    eventArr = NSDictionary(eventArr)
+//                        print(eventArr)
+                    let jsonEventsArr = eventArr["event"]! //as! NSDictionary
+                    let jsonEvents:NSDictionary = jsonEventsArr[0]! as! NSDictionary
+                    print("the events are as follows.....")
+                    print(type(of:jsonEvents))
+                    print(jsonEvents)
+                    print(".... end of the output")
+                    //print(json?["events"])
+                } catch {
                     print("error in JSONSerialization")
+                    
                 }
             }
-        })
-        eventTask.resume()
-
+        }).resume()
     }
     
 
 
-  init(Location: String, DateFilter: String, Keywords: String)
+    init(Location: String, DateFilter: String, Keywords: String, Semaphore: inout DispatchSemaphore)
       {
         self.city = Location
         self.date = DateFilter
         self.keywords = Keywords
+        self.semaphore = Semaphore
 //        getResponse()
         getTheHeader()
+        populateEventArray()
       }
 
 }

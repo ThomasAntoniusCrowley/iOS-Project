@@ -10,13 +10,18 @@ import SpriteKit
 import GameplayKit
 class GameViewController: UIViewController {
     
-    let eventSt: EventsStream = EventsStream(Location: "somewhere", DateFilter: "Sometime", Keywords: "words")
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var semaphore = DispatchSemaphore(value: 0)
+        let eventSt: EventsStream = EventsStream(Location: "somewhere", DateFilter: "Sometime", Keywords: "words", Semaphore: &semaphore)
+        semaphore.wait(timeout: .distantFuture)
+        let streamDescription = eventSt.description
+        
+        print(streamDescription)
+        
+
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -34,9 +39,6 @@ class GameViewController: UIViewController {
             
            
         }
-        
-        let streamDescription = self.eventSt.description
-        print(streamDescription)
         
         
             }
