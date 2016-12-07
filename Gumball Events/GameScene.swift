@@ -13,12 +13,16 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    var viewController: UIViewController?
     var balls: [SKShapeNode] = []
     var touching: Bool = false
+    var touchFlag: Bool = false
     var lastTouched: CGPoint? = nil
     var G: CGVector = CGVector(dx:0.0, dy:-5.0)
-    var startTouchTime: Double = 0.0
-    var endTouchTime: Double = 0.0
+    var startTouchTime: DispatchTime = DispatchTime.now()
+    var endTouchTime: DispatchTime = DispatchTime.now()
+    var touchTime: UInt64 = 0
+    
     
     override func didMove(to view: SKView) {
         
@@ -60,6 +64,9 @@ class GameScene: SKScene {
         print(balls.count)
     }
     
+    func goToDetails() {
+        self.viewController?.performSegue(withIdentifier: "eventSegue", sender: viewController)
+    }
     
     func touchDown(atPoint pos : CGPoint) {
     }
@@ -75,8 +82,10 @@ class GameScene: SKScene {
             lastTouched = t.location(in: self)
             self.touchDown(atPoint: t.location(in: self))
             touching = true
+            startTouchTime = DispatchTime.now()
             for b in balls {
                 if (b .contains(t.location(in: self))) {
+                    touchFlag = true
                     self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
                     b.position = t.location(in: self)
                 }
@@ -91,6 +100,7 @@ class GameScene: SKScene {
             touching = true
             for b in balls {
                 if b.contains(t.location(in: self)) {
+                    touchFlag = true
                     b.position = t.location(in: self)
                     self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
                 }
@@ -101,8 +111,17 @@ class GameScene: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             self.touchUp(atPoint: t.location(in: self))
+            endTouchTime = DispatchTime.now()
+            touchTime = endTouchTime.uptimeNanoseconds - startTouchTime.uptimeNanoseconds
             touching = false
             self.physicsWorld.gravity = G
+            print(touchTime)
+            if touchTime < 300000000 {
+                if touchFlag == true {
+                    NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: nil)
+                }
+            }
+            touchFlag = false
         }
     }
     

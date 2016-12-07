@@ -11,7 +11,17 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+@objc protocol performSegueFromScene {
+    @objc optional func goToEventDetails()
+}
+
+extension GameViewController {
+    @objc func goToEventDetails() {
+        self.performSegue(withIdentifier: "eventSegue", sender: self)
+    }
+}
+
+class GameViewController: UIViewController, performSegueFromScene {
     
     @IBOutlet weak var weatherImg: UIImageView!
     
@@ -25,6 +35,8 @@ class GameViewController: UIViewController {
                 scene.scaleMode = .aspectFill
                 
                 // Present the scene
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(goToEventDetails) , name: NSNotification.Name("eventSegue"), object: nil)
                 view.presentScene(scene)
                 
                 //Acquire startup data
@@ -113,6 +125,12 @@ class GameViewController: UIViewController {
             }
         }
     }
+    
+    
+    
+    func selectSegue() {
+        performSelector(inBackground: #selector(goToEventDetails), with: nil)
+    }
 
     override var shouldAutorotate: Bool {
         return true
@@ -135,3 +153,9 @@ class GameViewController: UIViewController {
         return true
     }
 }
+
+//extension GameViewController {
+//    @objc func goToEventDetails() {
+//        self.performSegue(withIdentifier: "eventSegue", sender: self)
+//    }
+//}
