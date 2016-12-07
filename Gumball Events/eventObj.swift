@@ -54,6 +54,33 @@ class Event: CustomStringConvertible
          */
         return "The Venue information: \nID: \(id) \nWeb Address: \(venue_url) \nEvent Address: \(venue_address)"
     }
+    
+    func getDict() -> [String: Any]
+    {
+        /**
+         returns the variables in a dictionary
+         */
+        
+        var eventDict = [String: Any]()
+        eventDict["id"] = id
+        eventDict["url"] = url
+        eventDict["title"] = title
+        eventDict["start_time"] = start_time
+        eventDict["venue_id"] = venue_id
+        eventDict["venue_url"] = venue_url
+        eventDict["venue_address"] = venue_address
+        eventDict["city_name"] = city_name
+        eventDict["region_name"] = region_name
+        eventDict["region_abbr"] = region_abbr
+        eventDict["postal_code"] = postal_code
+        eventDict["country_name"] = country_name
+        eventDict["latitude"] = latitude
+        eventDict["longitude"] = longitude
+        
+        return eventDict
+    }
+
+    
     init(eventID: String, URLAddress: String, eventTitle: String, eventStartTime: String,
          venueID: String, venueURL: String, venueAddress: String, cityName: String,
          regionName: String, regionAbbr: String, postCode: String, country: String,
