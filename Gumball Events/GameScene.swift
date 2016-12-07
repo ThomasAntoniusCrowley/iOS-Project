@@ -15,10 +15,9 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     var balls: [SKShapeNode] = []
     var touching: Bool = false
-    var lastTouched: CGPoint = nil
+    var lastTouched: CGPoint? = nil
     
     override func didMove(to view: SKView) {
-        
         
         self.physicsWorld.gravity = CGVector(dx:0.0, dy:-5.0) // Apply gravity
         
@@ -60,9 +59,10 @@ class GameScene: SKScene {
     
     
     func touchDown(atPoint pos : CGPoint) {
-        //last
+        lastTouched = pos
         for b in balls {
             if (b.contains(pos)) {
+                print(pos)
                 b.position = pos
                 touching = true
             }
@@ -71,6 +71,7 @@ class GameScene: SKScene {
     
     func touchMoved(toPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+            lastTouched = pos
             n.position = pos
             n.strokeColor = SKColor.blue
             self.addChild(n)
@@ -118,13 +119,12 @@ class GameScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    func update(_ currentTime: TimeInterval, _ touches: Set<UITouch>) {
+    override func update(_ currentTime: TimeInterval) {
+        print(balls)
         if touching == true {
-            for t in touches {
-                for b in balls {
-                    if b.contains(t.location(in: self)) {
-                        b.position = t.location(in: self)
-                    }
+            for b in balls {
+                if b.contains(lastTouched!) {
+                    b.position = lastTouched!
                 }
             }
         }
