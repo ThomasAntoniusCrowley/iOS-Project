@@ -16,10 +16,13 @@ class GameScene: SKScene {
     var balls: [SKShapeNode] = []
     var touching: Bool = false
     var lastTouched: CGPoint? = nil
+    var G: CGVector = CGVector(dx:0.0, dy:-5.0)
+    var startTouchTime: Double = 0.0
+    var endTouchTime: Double = 0.0
     
     override func didMove(to view: SKView) {
         
-        self.physicsWorld.gravity = CGVector(dx:0.0, dy:-5.0) // Apply gravity
+        self.physicsWorld.gravity = G // Apply gravity
         
         let frameCollider = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = frameCollider // Create physics body
@@ -54,43 +57,27 @@ class GameScene: SKScene {
         ball.physicsBody?.friction = 0.3
         ball.physicsBody?.restitution = 0.8
         ball.physicsBody?.mass = 0.5 // Configure physics
-        
+        print(balls.count)
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
-        lastTouched = pos
-        for b in balls {
-            if (b.contains(pos)) {
-                print(pos)
-                b.position = pos
-                touching = true
-            }
-        }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            lastTouched = pos
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
+            lastTouched = t.location(in: self)
             self.touchDown(atPoint: t.location(in: self))
+            touching = true
             for b in balls {
                 if (b .contains(t.location(in: self))) {
+                    self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
                     b.position = t.location(in: self)
                 }
             }
@@ -99,10 +86,13 @@ class GameScene: SKScene {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
+            lastTouched = t.location(in: self)
             self.touchMoved(toPoint: t.location(in: self))
+            touching = true
             for b in balls {
                 if b.contains(t.location(in: self)) {
                     b.position = t.location(in: self)
+                    self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
                 }
             }
         }
@@ -112,6 +102,7 @@ class GameScene: SKScene {
         for t in touches {
             self.touchUp(atPoint: t.location(in: self))
             touching = false
+            self.physicsWorld.gravity = G
         }
     }
     
@@ -120,7 +111,6 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        print(balls)
         if touching == true {
             for b in balls {
                 if b.contains(lastTouched!) {
