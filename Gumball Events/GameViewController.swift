@@ -26,14 +26,9 @@ class GameViewController: UIViewController {
                 
                 // Present the scene
                 view.presentScene(scene)
-                dispatchForData()
-                //weatherObj.getResponse()
-                //let img: UIImage? = weatherObj.getWeatherImage()
-//                if (img != nil) {
-//                    weatherImg.image = img
-//                    view.addSubview(weatherImg)
-//                }
                 
+                //Acquire startup data
+                dispatchForData()
             }
             
             view.ignoresSiblingOrder = true
@@ -48,15 +43,21 @@ class GameViewController: UIViewController {
         }
     }
     
+    /**
+     This function acquires weather data from a remote web service. First, it acquires general weather data, and then uses part of 
+     the returned JSON as an icon code. This code is injected into a URL, which returns a small weather image.
+     */
     func dispatchForData() {
         let baseURL = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=Leeds,UK&APPID=a225644333c3c9caf0e647bb3385a4cc")!
         
         DispatchQueue.global(qos: .userInitiated).async {
-            let semaphore = DispatchSemaphore(value: 0)
+            let semaphore = DispatchSemaphore(value: 0) //Semaphore for notifying UI when async task has finished
             var iconCode: String = ""
             
+            //Begin asynchronous process
             DispatchQueue.main.async {
                 do {
+                    //Spawn another asynchronous task from within to acquire icon code
                     URLSession.shared.dataTask(with: baseURL, completionHandler: {
                         (body, response, error) in
                         
@@ -65,13 +66,20 @@ class GameViewController: UIViewController {
                             
                         } else {
                             do {
+                                //Serialize JSON string form URL
                                 let json = try JSONSerialization.jsonObject(with: body!, options: .allowFragments) as? NSDictionary
                                 print(json)
+                                
+                                //Acquire weather object from JSON string
                                 let weather = (json?["weather"]! as! NSArray).dictionaryWithValues(forKeys: ["description", "icon", "id", "main"]) as NSDictionary
                                 print(weather)
+                                
+                                //Parse icon code from weather object
                                 let icon = String(describing: weather["icon"]!)
                                 let iconArr: [String] = icon.components(separatedBy: "\n")[1].components(separatedBy: "    ")
                                 iconCode = iconArr[1].components(separatedBy: ",")[0]
+                                
+                                //Signal semaphore to alert 2nd async task that icon code has been acquired
                                 semaphore.signal()
                                 print(iconCode)
                             } catch {
@@ -82,16 +90,26 @@ class GameViewController: UIViewController {
                     }).resume()
                 }
             }
+            
+            //Semaphore waits for icon code to have been acquired before continuing
             semaphore.wait(timeout: .distantFuture)
+            
+            //Start another async task
             DispatchQueue.global(qos: .userInitiated).async {
+                
+                //Get image from icon code and URL
                 let imgUrl = URL(string: "http://openweathermap.org/img/w/" + iconCode + ".png")
                 print(imgUrl)
+                
+                //Parse image data and create UIImageView object
                 let imageData:NSData = NSData(contentsOf: imgUrl!)!
                 let imageView = UIImageView(frame: CGRect(x:0, y:0, width:200, height:200))
                 imageView.center = self.view.center
                 
-                // When from background thread, UI needs to be updated on main_queue
+                //Update UI on main dispatch queue
                 DispatchQueue.main.async {
+                    
+                    //Feed image data into UIImage object and add to view
                     let image = UIImage(data: imageData as Data)
                     imageView.image = image
                     imageView.contentMode = UIViewContentMode.scaleAspectFit
@@ -100,11 +118,6 @@ class GameViewController: UIViewController {
             }
         }
     }
-        
-        
-
-    
-    
 
     override var shouldAutorotate: Bool {
         return true
