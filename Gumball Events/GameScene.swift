@@ -149,7 +149,7 @@ class GameScene: SKScene, performActionFromController {
             print(touchTime)
             if touchTime < 300000000 {
                 if touchFlag == true {
-                    for i in 0...balls.count {
+                    for i in 0...balls.count - 1 {
                         if balls[i].contains(t.previousLocation(in: self)) {
                             NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: nil)
                         }
