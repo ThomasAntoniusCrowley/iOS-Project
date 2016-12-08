@@ -37,10 +37,15 @@ class GameViewController: UIViewController, performSegueFromScene {
     @IBOutlet weak var weatherImg: UIImageView!
     @IBOutlet weak var ballsButton: UIButton!
     var dataDict = [String: Any]()
+    var image:UIImage!
     
     //Called once view has loaded - used for variable initialisation
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ballsButton = UIButton(type: .custom)
+        let cogImage = UIImage(named: "gumball.png")
+        ballsButton.setImage(cogImage, for: .normal)
         
         if let view = self.view as! SKView? {
             
