@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import MapKit
 
 class EventDetailsViewController: UIViewController {
 
     var dataDict = [String: Any]()
+    var location: CLLocation? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        location = CLLocation(latitude: dataDict["latitude"] as! CLLocationDegrees, longitude: dataDict["longitude"] as! CLLocationDegrees)
+        
+        
         print(dataDict)
     }
 
@@ -23,15 +28,7 @@ class EventDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setMapLocation(location: CLLocation) {
+        //let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, radius * 2.0, radius * 2.0)
     }
-    */
-
 }

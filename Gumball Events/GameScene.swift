@@ -110,12 +110,14 @@ class GameScene: SKScene, performActionFromController {
                 let canvasWidth: UInt32 = UInt32(self.view!.frame.size.width)
                 let canvasHeight: UInt32 = UInt32(self.view!.frame.size.height)
                 
+                //Random spawn point
                 ball.position = CGPoint (x: CGFloat(arc4random()%(canvasWidth)), y: CGFloat(arc4random()%(canvasHeight)))
                 
+                //Add ball to scene
                 self.addChild(ball)
                 
+                //Add physics to ball
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.frame.size.width/2)
-                
                 ball.physicsBody?.friction = 0.3
                 ball.physicsBody?.restitution = 0.8
                 ball.physicsBody?.mass = 0.5 // Configure physics
@@ -126,6 +128,7 @@ class GameScene: SKScene, performActionFromController {
         }
     }
     
+    //invoked form view controller using notificationCenter - performs segue to details view
     func goToDetails() {
         self.viewController?.performSegue(withIdentifier: "eventSegue", sender: viewController)
     }
@@ -139,56 +142,111 @@ class GameScene: SKScene, performActionFromController {
     func touchUp(atPoint pos : CGPoint) {
     }
     
+    //Handles when touch begins
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
+            
+            //Record touch coordinates
             lastTouched = t.location(in: self)
             self.touchDown(atPoint: t.location(in: self))
+            
+            //Set flag to indicate if screen is being touched
             touching = true
+            
+            //Record time for calculating touch length in nanoseconds
             startTouchTime = DispatchTime.now()
+            
+            //Count through gumballs
             for b in balls {
+                
+                //If touch coordinates are within sprite boundaries
                 if (b.contains(t.location(in: self))) {
+                    
+                    //Set touch flag to indicate if gumball is being touched
                     touchFlag = true
+                    
+                    //Temporarily disable gravity
                     self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
+                    
+                    //Set ball location to touch location for dragging
                     b.position = t.location(in: self)
                 }
             }
         }
     }
     
+    //Handles when touch moves
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
+            
+            //Record touch coordinates
             lastTouched = t.location(in: self)
             self.touchMoved(toPoint: t.location(in: self))
+            
+            //Set flag to indicate if screen is being touched
             touching = true
+            
+            //Count through gumballs
             for b in balls {
+                
+                //If touch coordinates are within sprite boundaries
                 if b.contains(t.location(in: self)) {
+                    
+                    //Set flag to indicate if gumball is being touched
                     touchFlag = true
-                    b.position = t.location(in: self)
+                    
+                    //Temporarily disable gravity
                     self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
+                    
+                    //Set umball position to touch location for dragging
+                    b.position = t.location(in: self)
+                    
                 }
             }
         }
     }
     
+    //Handles when touch ends
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
+            
+            //Get last touch location
             self.touchUp(atPoint: t.location(in: self))
+            
+            //Record time in nanoseconds and calculate touch length
             endTouchTime = DispatchTime.now()
             touchTime = endTouchTime.uptimeNanoseconds - startTouchTime.uptimeNanoseconds
+            
+            //Set flag for indicating whether or not screen is being touched
             touching = false
+            
+            //Apply gravity
             self.physicsWorld.gravity = G
             print(touchTime)
+            
+            //If touch is very short (< 0.3 seconds)
             if touchTime < 300000000 {
+                
+                //If umball was touched
                 if touchFlag == true {
+                    
+                    //Loop through gumball array
                     for i in 0...balls.count - 1 {
+                        
+                        //If previous touch location was within gumball boundaries
                         if balls[i].contains(t.previousLocation(in: self)) {
                             print("Balls: " + String(balls.count) + ", events: " + String(eventsArr.count))
+                            
+                            //Get data dictionary from corresponding event object
                             let dict: Dictionary = eventsArr[i].getDict()
+                            
+                            //Post notification to GameViewController to perform segue, sending data dictionary with it
                             NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: dict)
                         }
                     }
                 }
             }
+            //Ball no longer being touched
             touchFlag = false
         }
     }
@@ -198,9 +256,17 @@ class GameScene: SKScene, performActionFromController {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
+        //If screen is being touched
         if touching == true {
+            
+            //Loop through gumballs
             for b in balls {
+                
+                //If last touched coordinate was within gumball sprite boundary
                 if b.contains(lastTouched!) {
+                    
+                    //Gumball position = touch location
                     b.position = lastTouched!
                 }
             }
