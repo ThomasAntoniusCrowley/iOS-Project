@@ -8,20 +8,7 @@
 
 import UIKit
 
-@objc protocol sendDataToScene {
-    @objc optional func sendToGameScene()
-}
-
-extension GameViewController {
-    @objc func sendTogameScene(notification: NSNotification) {
-        let dict = notification.object as! NSDictionary
-        self.dataDict = dict as! [String : Any]
-        self.performSegue(withIdentifier: "eventSegue", sender: self)
-    }
-}
-
-
-class FilterViewController: UIViewController {
+class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
 //    var musicFlg: Bool
 //    var charityFlg: Bool
@@ -30,16 +17,20 @@ class FilterViewController: UIViewController {
 //    var techFlg: Bool
 //    var artsFlg: Bool
 //    var retailFlg: Bool
+    var categories: [String] = []
 //    
+    @IBOutlet weak var keywordsField: UITextField!
+    @IBOutlet weak var catPicker: UIPickerView!
+    @IBOutlet weak var catField: UITextField!
     
     
-    @IBOutlet weak var musicSwitch: UISwitch!
-    @IBOutlet weak var charitySwitch: UISwitch!
-    @IBOutlet weak var sportSwitch: UISwitch!
-    @IBOutlet weak var familySwitch: UISwitch!
-    @IBOutlet weak var techSwitch: UISwitch!
-    @IBOutlet weak var retailSwitch: UISwitch!
-    @IBOutlet weak var artsSwitch: UISwitch!
+//    @IBOutlet weak var musicSwitch: UISwitch!
+//    @IBOutlet weak var charitySwitch: UISwitch!
+//    @IBOutlet weak var sportSwitch: UISwitch!
+//    @IBOutlet weak var familySwitch: UISwitch!
+//    @IBOutlet weak var techSwitch: UISwitch!
+//    @IBOutlet weak var retailSwitch: UISwitch!
+//    @IBOutlet weak var artsSwitch: UISwitch!
     
     var switchArr: [String] = []
     
@@ -49,12 +40,43 @@ class FilterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // The number of columns of data
+    func numberOfComponents(in: UIPickerView) -> Int {
+        return 1
     }
     
     
+    
+    
+//    @IBAction func musicPresd(_ sender: AnyObject) {
+//        UserDefaults.standard.set(musicSwitch.isOn, forKey: "switchState")
+//    }
+//
+//    @IBAction func charityPresd(_ sender: AnyObject) {
+//        UserDefaults.standard.set(charitySwitch.isOn, forKey: "switchState")
+//    }
+//    
+//    
+//    @IBAction func sportPresd(_ sender: AnyObject) {
+//        UserDefaults.standard.set(sportSwitch.isOn, forKey: "switchState")
+//    }
+//    
+//    @IBAction func famPresd(_ sender: AnyObject) {
+//        UserDefaults.standard.set(familySwitch.isOn, forKey: "switchState")
+//    }
+//    
+//    @IBAction func techPresd(_ sender: AnyObject) {
+//        UserDefaults.standard.set(techSwitch.isOn, forKey: "switchState")
+//    }
+//    
+//   
+//    @IBAction func artsPresd(_ sender: AnyObject) {
+//        UserDefaults.standard.set(artsSwitch.isOn, forKey: "switchState")
+//    }
+//   
+//    @IBAction func retailPresd(_ sender: AnyObject) {
+//         UserDefaults.standard.set(retailSwitch.isOn, forKey: "switchState")
+//    }
     
     
 //    let defaults = UserDefaults.standard
@@ -75,9 +97,7 @@ class FilterViewController: UIViewController {
 //}
 
 
-    
-    
-
+  
     /*
     // MARK: - Navigation
 
@@ -86,6 +106,17 @@ class FilterViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
     */
 
 }
