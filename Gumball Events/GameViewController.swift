@@ -11,9 +11,20 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+@objc protocol performSegueFromScene {
+    @objc optional func goToEventDetails()
+}
+
+extension GameViewController {
+    @objc func goToEventDetails() {
+        self.performSegue(withIdentifier: "eventSegue", sender: self)
+    }
+}
+
+class GameViewController: UIViewController, performSegueFromScene {
     
     @IBOutlet weak var weatherImg: UIImageView!
+    @IBOutlet weak var ballsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +36,8 @@ class GameViewController: UIViewController {
                 scene.scaleMode = .aspectFill
                 
                 // Present the scene
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(goToEventDetails) , name: NSNotification.Name("eventSegue"), object: nil)
                 view.presentScene(scene)
                 
                 //Acquire startup data
@@ -39,7 +52,7 @@ class GameViewController: UIViewController {
     }
     
     /**
-     This function acquires weather data from a remote web service. First, it acquires general weather data, and then uses part of 
+     This function acquires weather data from a remote web service. First, it acquires general weather data, and then uses part of
      the returned JSON as an icon code. This code is injected into a URL, which returns a small weather image.
      */
     func dispatchForData() {
@@ -113,11 +126,20 @@ class GameViewController: UIViewController {
             }
         }
     }
-
+    
+    @IBAction func getBalls(_ sender: AnyObject) {
+        NotificationCenter.default.post(name: NSNotification.Name("getBalls"), object: nil)
+    }
+    
+    
+    func selectSegue() {
+        performSelector(inBackground: #selector(goToEventDetails), with: nil)
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -125,12 +147,12 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
