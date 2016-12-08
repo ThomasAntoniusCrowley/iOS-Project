@@ -47,14 +47,6 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        musicSwitch.isOn =  UserDefaults.standard.bool(forKey: "musicState")
-        charitySwitch.isOn =  UserDefaults.standard.bool(forKey: "charityState")
-        sportSwitch.isOn =  UserDefaults.standard.bool(forKey: "sportState")
-        familySwitch.isOn =  UserDefaults.standard.bool(forKey: "familyState")
-        techSwitch.isOn =  UserDefaults.standard.bool(forKey: "techState")
-        artsSwitch.isOn =  UserDefaults.standard.bool(forKey: "artsState")
-        retailSwitch.isOn =  UserDefaults.standard.bool(forKey: "retailState")
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,105 +55,6 @@ class FilterViewController: UIViewController {
     }
     
     
-    @IBAction func musicPresd(_ sender: AnyObject) {
-        UserDefaults.standard.set(musicSwitch.isOn, forKey: "musicState")
-        
-        if musicSwitch.isOn == true {
-            switchArr.append("music")
-        } else {
-            for i in 0...switchArr.count {
-                if switchArr[i] == "music" {
-                    switchArr.remove(at: i)
-                }
-            }
-        }
-    }
-
-    @IBAction func charityPresd(_ sender: AnyObject) {
-        UserDefaults.standard.set(charitySwitch.isOn, forKey: "charityState")
-        
-        if charitySwitch.isOn == true {
-            switchArr.append("charity")
-        } else {
-            for i in 0...switchArr.count {
-                if switchArr[i] == "charity" {
-                    switchArr.remove(at: i)
-                }
-            }
-        }
-    }
-    
-    
-    @IBAction func sportPresd(_ sender: AnyObject) {
-        UserDefaults.standard.set(sportSwitch.isOn, forKey: "sportState")
-        
-        if sportSwitch.isOn == true {
-            switchArr.append("sport")
-        } else {
-            for i in 0...switchArr.count {
-                if switchArr[i] == "sport" {
-                    switchArr.remove(at: i)
-                }
-            }
-        }
-    }
-    
-    @IBAction func famPresd(_ sender: AnyObject) {
-        UserDefaults.standard.set(familySwitch.isOn, forKey: "familyState")
-        
-        if familySwitch.isOn == true {
-            switchArr.append("family")
-        } else {
-            for i in 0...switchArr.count {
-                if switchArr[i] == "family" {
-                    switchArr.remove(at: i)
-                }
-            }
-        }
-    }
-    
-    @IBAction func techPresd(_ sender: AnyObject) {
-        UserDefaults.standard.set(techSwitch.isOn, forKey: "techState")
-        
-        if techSwitch.isOn == true {
-            switchArr.append("tech")
-        } else {
-            for i in 0...switchArr.count {
-                if switchArr[i] == "tech" {
-                    switchArr.remove(at: i)
-                }
-            }
-        }
-    }
-    
-   
-    @IBAction func artsPresd(_ sender: AnyObject) {
-        UserDefaults.standard.set(artsSwitch.isOn, forKey: "artsState")
-        
-        if artsSwitch.isOn == true {
-            switchArr.append("arts")
-        } else {
-            for i in 0...switchArr.count {
-                if switchArr[i] == "arts" {
-                    switchArr.remove(at: i)
-                }
-            }
-        }
-    }
-   
-    @IBAction func retailPresd(_ sender: AnyObject) {
-         UserDefaults.standard.set(retailSwitch.isOn, forKey: "retailState")
-        
-        if retailSwitch.isOn == true {
-            switchArr.append("retail")
-        } else {
-            for i in 0...switchArr.count {
-                if switchArr[i] == "retail" {
-                    switchArr.remove(at: i)
-                }
-            }
-        }
-    }
     
     
 //    let defaults = UserDefaults.standard
