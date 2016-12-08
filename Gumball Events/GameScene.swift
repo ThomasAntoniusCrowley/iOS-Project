@@ -9,19 +9,34 @@
 import SpriteKit
 import GameplayKit
 
+//Create Objective-C protocol for performing action from view controller
 @objc protocol performActionFromController {
     @objc optional func getBalls()
 }
 
+//Class extension
 extension GameScene {
+    
+    //Declaration of Objective-C function for acquiring query data from FilterViewController
     @objc func getBalls() {
+        
+        //Get data via user defaults - data persists
         let location: String = UserDefaults.standard.string(forKey: "Location")!
         let category: String = UserDefaults.standard.string(forKey: "Category")!
-        let keywords: String = UserDefaults.standard.string(forKey: "Keyword")!
+        let keywords: String = UserDefaults.standard.string(forKey: "Keywords")!
+        
+        //Reset events stream
         eventsStream = nil
+        
+        //Create new dispatch semaphore
         var semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        
+        //Create new events stream with acquired data
         eventsStream = EventsStream(Location: location, DateFilter: "Futureo", Keywords: keywords, Category: category, Semaphore: &semaphore)
-        self.getEvents(eventsStream: self.eventsStream!)
+        
+        //Wait for data to be acquired before continuing
+        semaphore.wait(timeout: .distantFuture)
+        self.getEvents(eventsStream: eventsStream!)
     }
 }
 
@@ -41,47 +56,57 @@ class GameScene: SKScene, performActionFromController {
     var eventsStream: EventsStream? = nil
     var eventsArr: [Event] = []
     
-    
+    //Called when SKScene is loaded
     override func didMove(to view: SKView) {
-        //var semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        
+        //Create observer to handle methods invoked form view controller
         NotificationCenter.default.addObserver(self, selector: #selector(getBalls), name: NSNotification.Name("getBalls"), object: nil)
         
-        //eventsStream = EventsStream(Location: "Leeds", DateFilter: "Futureo", Keywords: "Music", Semaphore: &semaphore)
+        //Apply gravity
+        self.physicsWorld.gravity = G
         
-        self.physicsWorld.gravity = G // Apply gravity
-        
+        //Set screen edges as physics body
         let frameCollider = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.physicsBody = frameCollider // Create physics body
-        
-        //semaphore.wait(timeout: .distantFuture)
-        
-        //getEvents(eventsStream: eventsStream!)
+        self.physicsBody = frameCollider
     }
     
+    /**
+     This function places event data into workable array, counts through each event and creates a corresponding gumball.
+     Gumball indeces reflect event indices, allowing us to access event information from gumball interaction.
+     */
     func getEvents(eventsStream: EventsStream) {
+        
+        //Get event data into array
         eventsArr = eventsStream.events
+        print("Event count: " + String(eventsStream.events.count))
+        
+        //Count through event array as long as it's not empty
         if eventsArr.count > 0 {
             for i in 0...eventsArr.count - 1 {
                 
+                //Create gumball and append to gumball array
                 let ball = SKShapeNode(circleOfRadius: CGFloat(115))
                 balls.append(ball)
                 
+                //Random colours
                 let r: CGFloat = CGFloat(drand48())
                 let g: CGFloat = CGFloat(drand48())
                 let b: CGFloat = CGFloat(drand48())
-                
                 ball.strokeColor = UIColor(red:r, green:g, blue:b, alpha:1) // Random colours
                 ball.lineWidth = 4
                 ball.fillColor = UIColor(red:r, green:g, blue:b, alpha:1)
+                
+                //Place event data into dictionary
                 let eventDict: Dictionary = eventsArr[i].getDict()
                 
+                //Place event title as label onto gumball
                 let text = SKLabelNode(text: eventDict["title"] as? String) // Task name on each circle
                 text.fontSize = 18.0
                 text.fontName = "AvenirNext-Bold"
                 text.color = UIColor(red:0, green:0, blue:0, alpha:1)
-    
-                ball.addChild(text) // Add text to circle //GETDICT
+                ball.addChild(text)
                 
+                //Set canvas width/height
                 let canvasWidth: UInt32 = UInt32(self.view!.frame.size.width)
                 let canvasHeight: UInt32 = UInt32(self.view!.frame.size.height)
                 

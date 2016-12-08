@@ -1,5 +1,7 @@
 //
 //  GameViewController.swift
+//  Class for handling GameScene and UI components in view
+//
 //  Gumball Events
 //
 //  Created by Thomas Crowley [sc14talc] on 01/12/2016.
@@ -11,11 +13,18 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+//Objective-C protocol for passing data between classes via NotificationCenter
 @objc protocol performSegueFromScene {
+    
+    //Objective-C function for performing segue transition from SKScene
     @objc optional func goToEventDetails()
 }
 
+//Class extension
 extension GameViewController {
+    
+    //Objective-C function declaration - gets dictionary of event data 
+    //from touched gumball via NSNotification & performs segue
     @objc func goToEventDetails(notification: NSNotification) {
         let dict = notification.object as! NSDictionary
         self.dataDict = dict as! [String : Any]
@@ -29,28 +38,26 @@ class GameViewController: UIViewController, performSegueFromScene {
     @IBOutlet weak var ballsButton: UIButton!
     var dataDict = [String: Any]()
     
+    //Called once view has loaded - used for variable initialisation
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
+            
+            //Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
+                
+                //Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
-                // Present the scene
-                
+                //Create observer for calling methods via NotificationCenter & present scene
                 NotificationCenter.default.addObserver(self, selector: #selector(goToEventDetails) , name: NSNotification.Name("eventSegue"), object: nil)
                 view.presentScene(scene)
                 
                 //Acquire startup data
                 dispatchForData()
             }
-            
             view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
         }
     }
     
@@ -61,20 +68,22 @@ class GameViewController: UIViewController, performSegueFromScene {
     func dispatchForData() {
         let baseURL = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=Leeds,UK&APPID=a225644333c3c9caf0e647bb3385a4cc")!
         
+        //ready dispatch queue for handling data acquisition
         DispatchQueue.global(qos: .userInitiated).async {
-            let semaphore = DispatchSemaphore(value: 0) //Semaphore for notifying UI when async task has finished
+            
+            //Semaphore for notifying UI when async task has finished
+            let semaphore = DispatchSemaphore(value: 0)
             var iconCode: String = ""
             
             //Begin asynchronous process
             DispatchQueue.main.async {
                 do {
-                    //Spawn another asynchronous task from within to acquire icon code
+                    //Spawn asynchronous task from within queue to acquire weather data
                     URLSession.shared.dataTask(with: baseURL, completionHandler: {
                         (body, response, error) in
                         
                         if error != nil {
                             print("Error: " + error!.localizedDescription)
-                            
                         } else {
                             do {
                                 //Serialize JSON string form URL
@@ -130,23 +139,30 @@ class GameViewController: UIViewController, performSegueFromScene {
         }
     }
     
+    //Called before performing segue transition
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "eventSegue" {
+            
+            //Send dictionary to destination view controller
             let destinationVC = segue.destination as! EventDetailsViewController
             destinationVC.dataDict = self.dataDict
         }
     }
     
+    //Posts call to acquire gumballs to GameScene
     @IBAction func getBalls(_ sender: AnyObject) {
         NotificationCenter.default.post(name: NSNotification.Name("getBalls"), object: nil)
     }
     
+    //Invokes objective-C selector for moving performing segue via GameScene
     func selectSegue() {
         performSelector(inBackground: #selector(goToEventDetails), with: nil)
     }
     
+    //Should not rotate
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

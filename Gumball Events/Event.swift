@@ -20,7 +20,6 @@ class Event: CustomStringConvertible
     var city_name: String = ""
     var region_name: String = ""
     var region_abbr: String = ""
-    var postal_code: String = ""
     var country_name: String = ""
     var latitude: Float = 0
     var longitude: Float = 0
@@ -58,7 +57,6 @@ class Event: CustomStringConvertible
         eventDict["city_name"] = city_name
         eventDict["region_name"] = region_name
         eventDict["region_abbr"] = region_abbr
-        eventDict["postal_code"] = postal_code
         eventDict["country_name"] = country_name
         eventDict["latitude"] = latitude
         eventDict["longitude"] = longitude
@@ -69,7 +67,7 @@ class Event: CustomStringConvertible
     //Initialiser for stored variables
     init(eventID: String, URLAddress: String, eventTitle: String, eventStartTime: String,
          venueID: String, venueURL: String, venueAddress: String, cityName: String,
-         regionName: String, regionAbbr: String, postCode: String, country: String,
+         regionName: String, regionAbbr: String, country: String,
          latitude: Float, longitude: Float)
     {
         self.id = eventID
@@ -82,7 +80,6 @@ class Event: CustomStringConvertible
         self.city_name = cityName
         self.region_name = regionName
         self.region_abbr = regionAbbr
-        self.postal_code = postCode
         self.country_name = country
         self.latitude = latitude
         self.longitude = longitude
