@@ -43,9 +43,9 @@ class GameViewController: UIViewController, performSegueFromScene {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ballsButton = UIButton(type: .custom)
-        let cogImage = UIImage(named: "gumball.png")
-        ballsButton.setImage(cogImage, for: .normal)
+//        ballsButton = UIButton(type: .custom)
+//        let cogImage = UIImage(named: "gumball.png")
+//        ballsButton.setImage(cogImage, for: .normal)
         
         if let view = self.view as! SKView? {
             
