@@ -15,6 +15,12 @@ import GameplayKit
 
 extension GameScene {
     @objc func getBalls() {
+        let location: String = UserDefaults.standard.string(forKey: "locationState")!
+        let category: String = UserDefaults.standard.string(forKey: "categoryState")!
+        let keywords: String = UserDefaults.standard.string(forKey: "keywordState")!
+        eventsStream = nil
+        var semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        eventsStream = EventsStream(Location: location, DateFilter: "Futureo", Keywords: keywords, Category: category, Semaphore: &semaphore)
         self.getEvents(eventsStream: self.eventsStream!)
     }
 }
@@ -37,17 +43,17 @@ class GameScene: SKScene, performActionFromController {
     
     
     override func didMove(to view: SKView) {
-        var semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        //var semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
         NotificationCenter.default.addObserver(self, selector: #selector(getBalls), name: NSNotification.Name("getBalls"), object: nil)
         
-        eventsStream = EventsStream(Location: "Leeds", DateFilter: "Futureo", Keywords: "Music", Semaphore: &semaphore)
+        //eventsStream = EventsStream(Location: "Leeds", DateFilter: "Futureo", Keywords: "Music", Semaphore: &semaphore)
         
         self.physicsWorld.gravity = G // Apply gravity
         
         let frameCollider = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = frameCollider // Create physics body
         
-        semaphore.wait(timeout: .distantFuture)
+        //semaphore.wait(timeout: .distantFuture)
         
         //getEvents(eventsStream: eventsStream!)
     }
