@@ -9,7 +9,17 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+@objc protocol performActionFromController {
+    @objc optional func getBalls()
+}
+
+extension GameScene {
+    @objc func getBalls() {
+        self.getEvents(eventsStream: self.eventsStream!)
+    }
+}
+
+class GameScene: SKScene, performActionFromController {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -22,45 +32,60 @@ class GameScene: SKScene {
     var startTouchTime: DispatchTime = DispatchTime.now()
     var endTouchTime: DispatchTime = DispatchTime.now()
     var touchTime: UInt64 = 0
+    var eventsStream: EventsStream? = nil
     
     
     override func didMove(to view: SKView) {
+        var semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        NotificationCenter.default.addObserver(self, selector: #selector(getBalls), name: NSNotification.Name("getBalls"), object: nil)
+        
+        eventsStream = EventsStream(Location: "Leeds", DateFilter: "Futureo", Keywords: "Music", Semaphore: &semaphore)
         
         self.physicsWorld.gravity = G // Apply gravity
         
         let frameCollider = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = frameCollider // Create physics body
         
-        let ball = SKShapeNode(circleOfRadius: CGFloat(150))
-        balls.append(ball)
+        semaphore.wait(timeout: .distantFuture)
         
-        let r: CGFloat = CGFloat(drand48())
-        let g: CGFloat = CGFloat(drand48())
-        let b: CGFloat = CGFloat(drand48())
+        getEvents(eventsStream: eventsStream!)
+    }
+    
+    func getEvents(eventsStream: EventsStream) {
         
-        ball.strokeColor = UIColor(red:r, green:g, blue:b, alpha:1) // Random colours
-        ball.lineWidth = 4
-        ball.fillColor = UIColor(red:r, green:g, blue:b, alpha:1)
-        
-        let text = SKLabelNode(text: "Hey") // Task name on each circle
-        text.fontSize = 18.0
-        text.fontName = "AvenirNext-Bold"
-        text.color = UIColor(red:0, green:0, blue:0, alpha:1)
-        
-        ball.addChild(text) // Add text to circle
-        
-        let canvasWidth: UInt32 = UInt32(self.view!.frame.size.width)
-        let canvasHeight: UInt32 = UInt32(self.view!.frame.size.height)
-        
-        ball.position = CGPoint (x: CGFloat(arc4random()%(canvasWidth)), y: CGFloat(arc4random()%(canvasHeight)))
-        
-        self.addChild(ball)
-        
-        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.frame.size.width/2)
-        
-        ball.physicsBody?.friction = 0.3
-        ball.physicsBody?.restitution = 0.8
-        ball.physicsBody?.mass = 0.5 // Configure physics
+        for i in 1...eventsStream.events.count {
+            
+            let ball = SKShapeNode(circleOfRadius: CGFloat(115))
+            balls.append(ball)
+            
+            let r: CGFloat = CGFloat(drand48())
+            let g: CGFloat = CGFloat(drand48())
+            let b: CGFloat = CGFloat(drand48())
+            
+            ball.strokeColor = UIColor(red:r, green:g, blue:b, alpha:1) // Random colours
+            ball.lineWidth = 4
+            ball.fillColor = UIColor(red:r, green:g, blue:b, alpha:1)
+            
+            let text = SKLabelNode(eventsStream.events[i]) // Task name on each circle
+            text.fontSize = 18.0
+            text.fontName = "AvenirNext-Bold"
+            text.color = UIColor(red:0, green:0, blue:0, alpha:1)
+            
+            ball.addChild(text) // Add text to circle //GETDICT
+            
+            let canvasWidth: UInt32 = UInt32(self.view!.frame.size.width)
+            let canvasHeight: UInt32 = UInt32(self.view!.frame.size.height)
+            
+            ball.position = CGPoint (x: CGFloat(arc4random()%(canvasWidth)), y: CGFloat(arc4random()%(canvasHeight)))
+            
+            self.addChild(ball)
+            
+            ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.frame.size.width/2)
+            
+            ball.physicsBody?.friction = 0.3
+            ball.physicsBody?.restitution = 0.8
+            ball.physicsBody?.mass = 0.5 // Configure physics
+        }
         print(balls.count)
     }
     
@@ -118,7 +143,11 @@ class GameScene: SKScene {
             print(touchTime)
             if touchTime < 300000000 {
                 if touchFlag == true {
-                    NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: nil)
+                    for i in 1...balls.count {
+                        if balls[i].contains(t.previousLocation(in: self)) {
+                            NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: nil)
+                        }
+                    }
                 }
             }
             touchFlag = false

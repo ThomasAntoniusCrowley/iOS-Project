@@ -24,6 +24,7 @@ extension GameViewController {
 class GameViewController: UIViewController, performSegueFromScene {
     
     @IBOutlet weak var weatherImg: UIImageView!
+    @IBOutlet weak var ballsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,6 +127,9 @@ class GameViewController: UIViewController, performSegueFromScene {
         }
     }
     
+    @IBAction func getBalls(_ sender: AnyObject) {
+        NotificationCenter.default.post(name: NSNotification.Name("getBalls"), object: nil)
+    }
     
     
     func selectSegue() {
@@ -153,9 +157,3 @@ class GameViewController: UIViewController, performSegueFromScene {
         return true
     }
 }
-
-//extension GameViewController {
-//    @objc func goToEventDetails() {
-//        self.performSegue(withIdentifier: "eventSegue", sender: self)
-//    }
-//}
