@@ -225,6 +225,7 @@ class EventsStream: CustomStringConvertible
         getURL()
         getTheHeader()
         populateEventArray()
+        print(events.count)
       }
 
 }

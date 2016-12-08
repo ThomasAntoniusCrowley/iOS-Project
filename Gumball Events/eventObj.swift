@@ -62,6 +62,7 @@ class Event: CustomStringConvertible
          */
         
         var eventDict = [String: Any]()
+        
         eventDict["id"] = id
         eventDict["url"] = url
         eventDict["title"] = title
