@@ -15,9 +15,9 @@ import GameplayKit
 
 extension GameScene {
     @objc func getBalls() {
-        let location: String = UserDefaults.standard.string(forKey: "locationState")!
-        let category: String = UserDefaults.standard.string(forKey: "categoryState")!
-        let keywords: String = UserDefaults.standard.string(forKey: "keywordState")!
+        let location: String = UserDefaults.standard.string(forKey: "Location")!
+        let category: String = UserDefaults.standard.string(forKey: "Category")!
+        let keywords: String = UserDefaults.standard.string(forKey: "Keyword")!
         eventsStream = nil
         var semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
         eventsStream = EventsStream(Location: location, DateFilter: "Futureo", Keywords: keywords, Category: category, Semaphore: &semaphore)
@@ -97,7 +97,7 @@ class GameScene: SKScene, performActionFromController {
             }
             print(balls.count)
         } else {
-            print("Error: nable to populate event array")
+            print("Error: unable to populate event array")
         }
     }
     
