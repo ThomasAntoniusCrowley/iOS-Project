@@ -42,8 +42,6 @@ extension GameScene {
 
 class GameScene: SKScene, performActionFromController {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
     var viewController: UIViewController?
     var balls: [SKShapeNode] = []
     var touching: Bool = false
