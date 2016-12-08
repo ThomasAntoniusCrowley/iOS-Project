@@ -32,9 +32,10 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 //    @IBOutlet weak var retailSwitch: UISwitch!
 //    @IBOutlet weak var artsSwitch: UISwitch!
     
+    var switchArr: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         categories = ["months", "weeks", "hours", "minutes", "seconds"] // Data list for pickerview
         self.catField.isUserInteractionEnabled = true
         self.catPicker.delegate = self
@@ -42,14 +43,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.catPicker.isHidden = true
         
     // Do any additional setup after loading the view.
-        
-//        musicSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
-//        charitySwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
-//        sportSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
-//        familySwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
-//        techSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
-//        artsSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
-//        retailSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
+
     }
 
     // The number of columns of data
@@ -62,6 +56,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return categories.count
     }
     
+
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -100,6 +95,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+
     }
     
     

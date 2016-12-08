@@ -15,6 +15,7 @@ class EventsStream: CustomStringConvertible
     var city: String = ""
     var date: String = ""
     var keywords: String = ""
+    var category: String = ""
     var total_items: Int = 0
     var page_size: Int = 0
     var page_count: Int = 0
@@ -37,7 +38,7 @@ class EventsStream: CustomStringConvertible
     {
 //        var baseURL = URL(string: "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&location=San+Diego&date=Futureo&q=music")!
         
-        self.baseAddr = baseAddr + "location=\(city)&date=\(date)&q=\(keywords)"
+        self.baseAddr = baseAddr + "location=\(city)&date=\(date)&q=\(keywords)&c=\(category)"
         self.baseURL = URL(string: baseAddr)!
     }
   func getResponse()
@@ -213,7 +214,7 @@ class EventsStream: CustomStringConvertible
     
 
 
-    init(Location: String, DateFilter: String, Keywords: String, Semaphore: inout DispatchSemaphore)
+    init(Location: String, DateFilter: String, Keywords: String, Category: String, Semaphore: inout DispatchSemaphore)
       {
         self.semaphore = Semaphore
 //        self.getURL()
@@ -221,6 +222,7 @@ class EventsStream: CustomStringConvertible
         self.date = DateFilter
         self.keywords = Keywords
         self.semaphore = Semaphore
+        self.category = Category
 //        getResponse()
         getURL()
         getTheHeader()
