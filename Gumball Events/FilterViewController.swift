@@ -9,7 +9,17 @@
 import UIKit
 
 class FilterViewController: UIViewController {
-
+    
+//    var musicFlg: Bool
+//    var charityFlg: Bool
+//    var sportFlg: Bool
+//    var familyFlg: Bool
+//    var techFlg: Bool
+//    var artsFlg: Bool
+//    var retailFlg: Bool
+//    
+    
+    
     @IBOutlet weak var musicSwitch: UISwitch!
     @IBOutlet weak var charitySwitch: UISwitch!
     @IBOutlet weak var sportSwitch: UISwitch!
@@ -22,12 +32,40 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        musicSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func musicSwitchPressed(_ sender: AnyObject) {
+         UserDefaults.standard.set(musicSwitch.isOn, forKey: "switchState")
+    }
+    
+    
+//    let defaults = UserDefaults.standard
+//    
+//    if let currentRecord = defaults.string(forKey: defaultsKeys.keyOne) {
+//        
+//        defaults.setValue(newRecord, forKey: defaultsKeys.keyOne)
+//    }
+//    else
+//    {
+//    print ("there are currently no records")
+//    let newRecord = recordString
+//    print ("the new record is \(newRecord)")
+//    defaults.setValue(newRecord, forKey: defaultsKeys.keyOne)
+//    }
+//    
+//    defaults.synchronize()
+//}
+
+
+    
     
 
     /*
