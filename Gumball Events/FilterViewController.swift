@@ -25,15 +25,21 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var sportSwitch: UISwitch!
     @IBOutlet weak var familySwitch: UISwitch!
     @IBOutlet weak var techSwitch: UISwitch!
-    @IBOutlet weak var artsSwitch: UISwitch!
     @IBOutlet weak var retailSwitch: UISwitch!
-        
+    @IBOutlet weak var artsSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         musicSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
+        charitySwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
+        sportSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
+        familySwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
+        techSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
+        artsSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
+        retailSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,8 +48,34 @@ class FilterViewController: UIViewController {
     }
     
     
-    @IBAction func musicSwitchPressed(_ sender: AnyObject) {
-         UserDefaults.standard.set(musicSwitch.isOn, forKey: "switchState")
+    @IBAction func musicPresd(_ sender: AnyObject) {
+        UserDefaults.standard.set(musicSwitch.isOn, forKey: "switchState")
+    }
+
+    @IBAction func charityPresd(_ sender: AnyObject) {
+        UserDefaults.standard.set(charitySwitch.isOn, forKey: "switchState")
+    }
+    
+    
+    @IBAction func sportPresd(_ sender: AnyObject) {
+        UserDefaults.standard.set(sportSwitch.isOn, forKey: "switchState")
+    }
+    
+    @IBAction func famPresd(_ sender: AnyObject) {
+        UserDefaults.standard.set(familySwitch.isOn, forKey: "switchState")
+    }
+    
+    @IBAction func techPresd(_ sender: AnyObject) {
+        UserDefaults.standard.set(techSwitch.isOn, forKey: "switchState")
+    }
+    
+   
+    @IBAction func artsPresd(_ sender: AnyObject) {
+        UserDefaults.standard.set(artsSwitch.isOn, forKey: "switchState")
+    }
+   
+    @IBAction func retailPresd(_ sender: AnyObject) {
+         UserDefaults.standard.set(retailSwitch.isOn, forKey: "switchState")
     }
     
     
