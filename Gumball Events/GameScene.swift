@@ -115,7 +115,7 @@ class GameScene: SKScene, performActionFromController {
             touching = true
             startTouchTime = DispatchTime.now()
             for b in balls {
-                if (b .contains(t.location(in: self))) {
+                if (b.contains(t.location(in: self))) {
                     touchFlag = true
                     self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
                     b.position = t.location(in: self)
