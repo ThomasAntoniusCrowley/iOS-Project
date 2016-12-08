@@ -53,7 +53,7 @@ class GameScene: SKScene, performActionFromController {
     
     func getEvents(eventsStream: EventsStream) {
         
-        for i in 1...eventsStream.events.count {
+        for i in 0...eventsStream.events.count - 1 {
             
             let ball = SKShapeNode(circleOfRadius: CGFloat(115))
             balls.append(ball)
@@ -65,13 +65,15 @@ class GameScene: SKScene, performActionFromController {
             ball.strokeColor = UIColor(red:r, green:g, blue:b, alpha:1) // Random colours
             ball.lineWidth = 4
             ball.fillColor = UIColor(red:r, green:g, blue:b, alpha:1)
-            
-            let text = SKLabelNode(eventsStream.events[i]) // Task name on each circle
-            text.fontSize = 18.0
-            text.fontName = "AvenirNext-Bold"
-            text.color = UIColor(red:0, green:0, blue:0, alpha:1)
-            
-            ball.addChild(text) // Add text to circle //GETDICT
+            let eventDict: Dictionary = eventsStream.events[i].getDict()
+            print("Ding!!!")
+            print(type(of:eventDict))
+//            let text = SKLabelNode(String(eventDict["title"])) // Task name on each circle
+//            text.fontSize = 18.0
+//            text.fontName = "AvenirNext-Bold"
+//            text.color = UIColor(red:0, green:0, blue:0, alpha:1)
+//            
+//            ball.addChild(text) // Add text to circle //GETDICT
             
             let canvasWidth: UInt32 = UInt32(self.view!.frame.size.width)
             let canvasHeight: UInt32 = UInt32(self.view!.frame.size.height)

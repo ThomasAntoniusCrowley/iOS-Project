@@ -26,7 +26,7 @@ class EventsStream: CustomStringConvertible
     var events: [Event] = []
     var semaphore: DispatchSemaphore
     var baseAddr: String = "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&"
-    var baseURL: URL = URL(string: "")!
+    var baseURL: URL? // = URL(string: "")!
     
     var description: String
     {
@@ -47,7 +47,7 @@ class EventsStream: CustomStringConvertible
     
       print("Set up session")
 
-      let eventTask = session.dataTask(with: baseURL, completionHandler: {
+      let eventTask = session.dataTask(with: baseURL!, completionHandler: {
           (body, response, error) in
 
           print(response)
@@ -80,7 +80,7 @@ class EventsStream: CustomStringConvertible
          print("Set up session")
 
          //        var total_items: Int = 123456789
-         let eventTask = session.dataTask(with: baseURL, completionHandler: {
+         let eventTask = session.dataTask(with: baseURL!, completionHandler: {
              (body, response, error) in
 
              print(response)
@@ -137,7 +137,7 @@ class EventsStream: CustomStringConvertible
         print("Set up session")
         
         //        var total_items: Int = 123456789
-        URLSession.shared.dataTask(with: baseURL, completionHandler: {
+        URLSession.shared.dataTask(with: baseURL!, completionHandler: {
             (body, response, error) in
             
             if error != nil {
@@ -216,7 +216,7 @@ class EventsStream: CustomStringConvertible
     init(Location: String, DateFilter: String, Keywords: String, Semaphore: inout DispatchSemaphore)
       {
         self.semaphore = Semaphore
-        self.getURL()
+//        self.getURL()
         self.city = Location
         self.date = DateFilter
         self.keywords = Keywords
