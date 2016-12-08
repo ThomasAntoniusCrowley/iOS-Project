@@ -131,8 +131,8 @@ class EventsStream: CustomStringConvertible
                         let region_name: String = jsonEvent["region_name"]! as! String
                         let region_abbr: String = jsonEvent["region_abbr"]! as! String
                         let country_name: String = jsonEvent["country_name"]! as! String
-                        let latitude: Float = Float(jsonEvent["latitude"]! as! String)!
-                        let longitude: Float = Float(jsonEvent["longitude"]! as! String)!
+                        let latitude: Double = Double(jsonEvent["latitude"]! as! String)!
+                        let longitude: Double = Double(jsonEvent["longitude"]! as! String)!
                         
                         //Create event object from parsed data
                         let eventObj: Event = Event(eventID: id , URLAddress: url , eventTitle: title , eventStartTime: start_time , venueID: venue_id , venueURL: venue_url , venueAddress: venue_address , cityName: city_name , regionName: region_name , regionAbbr: region_abbr, country: country_name , latitude: latitude , longitude: longitude )

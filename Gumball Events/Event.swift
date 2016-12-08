@@ -21,8 +21,8 @@ class Event: CustomStringConvertible
     var region_name: String = ""
     var region_abbr: String = ""
     var country_name: String = ""
-    var latitude: Float = 0
-    var longitude: Float = 0
+    var latitude: Double = 0
+    var longitude: Double = 0
     
     //Returns string description of event
     var description: String
@@ -31,7 +31,7 @@ class Event: CustomStringConvertible
     }
     
     //Returns tuple in the form of (lat,long)
-    func getLatLong()->(Float, Float)
+    func getLatLong()->(Double, Double)
     {
         return (latitude, longitude)
     }
@@ -68,7 +68,7 @@ class Event: CustomStringConvertible
     init(eventID: String, URLAddress: String, eventTitle: String, eventStartTime: String,
          venueID: String, venueURL: String, venueAddress: String, cityName: String,
          regionName: String, regionAbbr: String, country: String,
-         latitude: Float, longitude: Float)
+         latitude: Double, longitude: Double)
     {
         self.id = eventID
         self.url = URLAddress

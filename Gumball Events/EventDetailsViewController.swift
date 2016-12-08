@@ -22,8 +22,11 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        location = CLLocation(latitude: dataDict["latitude"] as! CLLocationDegrees, longitude: dataDict["longitude"] as! CLLocationDegrees)
+        titleLabel.text = dataDict["title"] as! String?
+        urlLabel.text = dataDict["url"] as! String?
         
+        location = CLLocation(latitude: dataDict["latitude"] as! CLLocationDegrees, longitude: dataDict["longitude"] as! CLLocationDegrees)
+        setMapLocation(location: location!)
         print(dataDict)
     }
 
@@ -34,5 +37,10 @@ class EventDetailsViewController: UIViewController {
     
     func setMapLocation(location: CLLocation) {
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, region * 2.0, region * 2.0)
+        mapView.setRegion(viewRegion, animated: true)
+        
+        let point: MKPointAnnotation = MKPointAnnotation()
+        point.coordinate = location.coordinate
+        mapView.addAnnotation(point)
     }
 }
