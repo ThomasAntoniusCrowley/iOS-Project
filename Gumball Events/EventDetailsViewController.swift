@@ -27,8 +27,4 @@ class EventDetailsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func setMapLocation(location: CLLocation) {
-        //let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, radius * 2.0, radius * 2.0)
-    }
 }
