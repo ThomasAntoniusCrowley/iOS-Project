@@ -10,6 +10,7 @@
 		03F584AF1DF9AE7800636231 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */; };
 		03F584B01DF9AE7800636231 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */; };
 		D20DF4D41DF3253C00B8FA07 /* EventsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D31DF3253C00B8FA07 /* EventsStream.swift */; };
+		D220B3891DFA185F00CD1428 /* gumball.png in Resources */ = {isa = PBXBuildFile; fileRef = D220B3881DFA185F00CD1428 /* gumball.png */; };
 		D24087821DF09B6200CCE0A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24087811DF09B6200CCE0A6 /* AppDelegate.swift */; };
 		D24087841DF09B6200CCE0A6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D24087831DF09B6200CCE0A6 /* GameScene.sks */; };
 		D24087861DF09B6200CCE0A6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D24087851DF09B6200CCE0A6 /* Actions.sks */; };
@@ -46,6 +47,7 @@
 		03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
 		D20DF4D31DF3253C00B8FA07 /* EventsStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsStream.swift; sourceTree = "<group>"; };
+		D220B3881DFA185F00CD1428 /* gumball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gumball.png; sourceTree = "<group>"; };
 		D240877E1DF09B6200CCE0A6 /* Gumball Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gumball Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24087811DF09B6200CCE0A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D24087831DF09B6200CCE0A6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		D24087801DF09B6200CCE0A6 /* Gumball Events */ = {
 			isa = PBXGroup;
 			children = (
+				D220B3881DFA185F00CD1428 /* gumball.png */,
 				D24087811DF09B6200CCE0A6 /* AppDelegate.swift */,
 				D24087831DF09B6200CCE0A6 /* GameScene.sks */,
 				D24087851DF09B6200CCE0A6 /* Actions.sks */,
@@ -268,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D220B3891DFA185F00CD1428 /* gumball.png in Resources */,
 				03F584B01DF9AE7800636231 /* EventDetailsViewController.xib in Resources */,
 				D240878D1DF09B6200CCE0A6 /* Main.storyboard in Resources */,
 				D24087841DF09B6200CCE0A6 /* GameScene.sks in Resources */,
