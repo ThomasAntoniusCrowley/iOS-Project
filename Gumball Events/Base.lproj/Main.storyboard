@@ -28,7 +28,7 @@
         <!--FilterView-->
         <scene sceneID="a0c-uF-T3D">
             <objects>
-                <viewController title="FilterView" id="e58-cY-E5g" customClass="FilterViewController" sceneMemberID="viewController">
+                <viewController title="FilterView" id="e58-cY-E5g" customClass="FilterViewController" customModule="Gumball_Events" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oib-eM-UCS"/>
                         <viewControllerLayoutGuide type="bottom" id="HT2-up-JcE"/>
@@ -127,10 +127,19 @@
                             <constraint firstItem="Zlk-lG-KyH" firstAttribute="top" secondItem="Oib-eM-UCS" secondAttribute="bottom" constant="5" id="sQk-FZ-zhL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="artsSwitch" destination="rPM-nE-dJY" id="E24-2F-DFM"/>
+                        <outlet property="charitySwitch" destination="tDv-6H-HF3" id="rke-5e-ZLE"/>
+                        <outlet property="familySwitch" destination="Efh-B5-ZCH" id="Cd8-nm-YTF"/>
+                        <outlet property="musicSwitch" destination="238-En-dml" id="zf5-4x-Rwh"/>
+                        <outlet property="retailSwitch" destination="6he-HX-oKr" id="yr2-ei-ANa"/>
+                        <outlet property="sportSwitch" destination="afc-a5-Frp" id="QTf-0R-Vh6"/>
+                        <outlet property="techSwitch" destination="jVn-Bj-ZBU" id="aOq-Q5-OEA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJq-2c-igj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="-696"/>
+            <point key="canvasLocation" x="25" y="-673"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
