@@ -193,10 +193,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Settings"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B45-H8-VyL">
-                                <frame key="frameInset" minX="164" minY="20" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="B45-H8-VyL">
+                                <frame key="frameInset" minX="139" minY="-66" width="96" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="gumball.png"/>
                                 <connections>
                                     <action selector="getBalls:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qrU-Ja-O6U"/>
                                 </connections>
@@ -222,4 +222,7 @@
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="gumball.png" width="96" height="203"/>
+    </resources>
 </document>
