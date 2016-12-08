@@ -11,14 +11,18 @@ import MapKit
 
 class EventDetailsViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    
     var dataDict = [String: Any]()
     var location: CLLocation? = nil
+    let region: CLLocationDistance = 1000
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         location = CLLocation(latitude: dataDict["latitude"] as! CLLocationDegrees, longitude: dataDict["longitude"] as! CLLocationDegrees)
-        
         
         print(dataDict)
     }
@@ -26,5 +30,9 @@ class EventDetailsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setMapLocation(location: CLLocation) {
+        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, region * 2.0, region * 2.0)
     }
 }
