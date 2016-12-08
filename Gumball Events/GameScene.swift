@@ -49,7 +49,7 @@ class GameScene: SKScene, performActionFromController {
         
         semaphore.wait(timeout: .distantFuture)
         
-        getEvents(eventsStream: eventsStream!)
+        //getEvents(eventsStream: eventsStream!)
     }
     
     func getEvents(eventsStream: EventsStream) {
@@ -151,7 +151,8 @@ class GameScene: SKScene, performActionFromController {
                 if touchFlag == true {
                     for i in 0...balls.count - 1 {
                         if balls[i].contains(t.previousLocation(in: self)) {
-                            NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: nil)
+                            let dict: Dictionary = eventsArr[i].getDict()
+                            NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: dict)
                         }
                     }
                 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03F584AF1DF9AE7800636231 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */; };
+		03F584B01DF9AE7800636231 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */; };
 		D20DF4D21DF3252000B8FA07 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */; };
 		D20DF4D41DF3253C00B8FA07 /* EventsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D31DF3253C00B8FA07 /* EventsAPI.swift */; };
 		D24087821DF09B6200CCE0A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24087811DF09B6200CCE0A6 /* AppDelegate.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
 		D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		D20DF4D31DF3253C00B8FA07 /* EventsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAPI.swift; sourceTree = "<group>"; };
 		D240877E1DF09B6200CCE0A6 /* Gumball Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gumball Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +120,8 @@
 				D24087851DF09B6200CCE0A6 /* Actions.sks */,
 				D24087871DF09B6200CCE0A6 /* GameScene.swift */,
 				D240878B1DF09B6200CCE0A6 /* Main.storyboard */,
+				03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */,
+				03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */,
 				D24087891DF09B6200CCE0A6 /* GameViewController.swift */,
 				D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */,
 				D240878E1DF09B6200CCE0A6 /* Assets.xcassets */,
@@ -253,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F584B01DF9AE7800636231 /* EventDetailsViewController.xib in Resources */,
 				D240878D1DF09B6200CCE0A6 /* Main.storyboard in Resources */,
 				D24087841DF09B6200CCE0A6 /* GameScene.sks in Resources */,
 				D240878F1DF09B6200CCE0A6 /* Assets.xcassets in Resources */,
@@ -286,6 +293,7 @@
 				D287522C1DF46F4B0022F859 /* eventObj.swift in Sources */,
 				D20DF4D41DF3253C00B8FA07 /* EventsAPI.swift in Sources */,
 				D24087881DF09B6200CCE0A6 /* GameScene.swift in Sources */,
+				03F584AF1DF9AE7800636231 /* EventDetailsViewController.swift in Sources */,
 				D20DF4D21DF3252000B8FA07 /* WeatherAPI.swift in Sources */,
 				D240878A1DF09B6200CCE0A6 /* GameViewController.swift in Sources */,
 				D24087821DF09B6200CCE0A6 /* AppDelegate.swift in Sources */,

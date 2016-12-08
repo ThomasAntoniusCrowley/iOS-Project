@@ -16,7 +16,8 @@ import GameplayKit
 }
 
 extension GameViewController {
-    @objc func goToEventDetails() {
+    @objc func goToEventDetails(notification: NSNotification) {
+        let dict = notification.object as! NSDictionary
         self.performSegue(withIdentifier: "eventSegue", sender: self)
     }
 }
@@ -127,10 +128,15 @@ class GameViewController: UIViewController, performSegueFromScene {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "eventSegue" {
+            
+        }
+    }
+    
     @IBAction func getBalls(_ sender: AnyObject) {
         NotificationCenter.default.post(name: NSNotification.Name("getBalls"), object: nil)
     }
-    
     
     func selectSegue() {
         performSelector(inBackground: #selector(goToEventDetails), with: nil)
