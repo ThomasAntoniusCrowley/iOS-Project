@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		03F584AF1DF9AE7800636231 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */; };
 		03F584B01DF9AE7800636231 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */; };
-		D20DF4D21DF3252000B8FA07 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */; };
 		D20DF4D41DF3253C00B8FA07 /* EventsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D31DF3253C00B8FA07 /* EventsStream.swift */; };
 		D24087821DF09B6200CCE0A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24087811DF09B6200CCE0A6 /* AppDelegate.swift */; };
 		D24087841DF09B6200CCE0A6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D24087831DF09B6200CCE0A6 /* GameScene.sks */; };
@@ -45,7 +44,6 @@
 /* Begin PBXFileReference section */
 		03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
-		D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		D20DF4D31DF3253C00B8FA07 /* EventsStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsStream.swift; sourceTree = "<group>"; };
 		D240877E1DF09B6200CCE0A6 /* Gumball Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gumball Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24087811DF09B6200CCE0A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */,
 				03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */,
 				D24087891DF09B6200CCE0A6 /* GameViewController.swift */,
-				D20DF4D11DF3252000B8FA07 /* WeatherAPI.swift */,
 				D240878E1DF09B6200CCE0A6 /* Assets.xcassets */,
 				D24087901DF09B6200CCE0A6 /* LaunchScreen.storyboard */,
 				D24087931DF09B6200CCE0A6 /* Info.plist */,
@@ -294,7 +291,6 @@
 				D20DF4D41DF3253C00B8FA07 /* EventsStream.swift in Sources */,
 				D24087881DF09B6200CCE0A6 /* GameScene.swift in Sources */,
 				03F584AF1DF9AE7800636231 /* EventDetailsViewController.swift in Sources */,
-				D20DF4D21DF3252000B8FA07 /* WeatherAPI.swift in Sources */,
 				D240878A1DF09B6200CCE0A6 /* GameViewController.swift in Sources */,
 				D24087821DF09B6200CCE0A6 /* AppDelegate.swift in Sources */,
 			);
