@@ -11,28 +11,24 @@ import UIKit
 class FilterViewController: UIViewController {
 
     
-    @IBOutlet weak var musicSwitch: UISwitch!
+      
+//    @IBOutlet weak var musicSwitch: UISwitch!
+
     
     
-    @IBOutlet weak var charitySwitch: UISwitch!
-    @IBOutlet weak var sportSwitch: UISwitch!
-    @IBOutlet weak var familySwitch: UISwitch!
-    @IBOutlet weak var techSwitch: UISwitch!
-    @IBOutlet weak var artSwitch: UISwitch!
-    @IBOutlet weak var retailSwitch: UISwitch!
-    
-    
-    @IBAction func backButton(_ sender: AnyObject) {
-//        
-//        @IBAction func buttonClicked(sender: UIButton) {
-//            if mySwitch.on {
-//                myTextField.text = "The Switch is Off"
-//                println("Switch is on")
-//                mySwitch.setOn(false, animated:true)
-//            } else {
-//                myTextField.text = "The Switch is On"
-//                mySwitch.setOn(true, animated:true)
-//            }
-//        }
-    }
+// TODO: impliment prepare for seguae
+//    
+//    @IBAction func backButton(_ sender: AnyObject) {
+////        
+////        @IBAction func buttonClicked(sender: UIButton) {
+////            if mySwitch.on {
+////                myTextField.text = "The Switch is Off"
+////                println("Switch is on")
+////                mySwitch.setOn(false, animated:true)
+////            } else {
+////                myTextField.text = "The Switch is On"
+////                mySwitch.setOn(true, animated:true)
+////            }
+////        }
+//    }
   }

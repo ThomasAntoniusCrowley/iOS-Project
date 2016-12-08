@@ -29,12 +29,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="238-En-dml">
-                                                <connections>
-                                                    <action selector="musicSwitch:" destination="e58-cY-E5g" eventType="valueChanged" id="faR-91-U3v"/>
-                                                    <action selector="musicSwitch:" destination="e58-cY-E5g" eventType="touchUpInside" id="sH3-2t-i2a"/>
-                                                </connections>
-                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="238-En-dml"/>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3OL-je-HXf">
@@ -100,8 +95,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHb-nN-BaA">
                                         <state key="normal" title="back"/>
                                         <connections>
-                                            <action selector="backButton:" destination="e58-cY-E5g" eventType="touchUpInside" id="gF9-Ic-X92"/>
-                                            <segue destination="BV1-FR-VrT" kind="show" id="U04-Uc-X5G"/>
+                                            <segue destination="BV1-FR-VrT" kind="show" id="W6J-dq-5sq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -115,15 +109,6 @@
                             <constraint firstItem="Zlk-lG-KyH" firstAttribute="top" secondItem="Oib-eM-UCS" secondAttribute="bottom" constant="5" id="sQk-FZ-zhL"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="artSwitch" destination="rPM-nE-dJY" id="flK-A9-jlZ"/>
-                        <outlet property="charitySwitch" destination="tDv-6H-HF3" id="p7O-cN-ZeL"/>
-                        <outlet property="familySwitch" destination="Efh-B5-ZCH" id="dQI-YO-GeU"/>
-                        <outlet property="musicSwitch" destination="238-En-dml" id="bDy-Pc-TWx"/>
-                        <outlet property="retailSwitch" destination="6he-HX-oKr" id="zrd-VN-wXw"/>
-                        <outlet property="sportSwitch" destination="afc-a5-Frp" id="gSn-wa-pLN"/>
-                        <outlet property="techSwitch" destination="jVn-Bj-ZBU" id="E5X-yz-e47"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJq-2c-igj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
