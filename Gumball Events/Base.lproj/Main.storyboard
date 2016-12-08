@@ -10,7 +10,7 @@
         <!--Event Details View Controller-->
         <scene sceneID="eTY-92-F59">
             <objects>
-                <viewController id="uQ7-mV-aio" customClass="EventDetailsViewController" sceneMemberID="viewController">
+                <viewController id="uQ7-mV-aio" customClass="EventDetailsViewController" customModule="Gumball_Events" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DOo-ho-yJy"/>
                         <viewControllerLayoutGuide type="bottom" id="WLt-8w-WXx"/>

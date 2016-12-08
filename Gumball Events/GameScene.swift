@@ -53,7 +53,7 @@ class GameScene: SKScene, performActionFromController {
     }
     
     func getEvents(eventsStream: EventsStream) {
-        let eventsArr = eventsStream.events
+        eventsArr = eventsStream.events
         if eventsArr.count > 0 {
             for i in 0...eventsArr.count - 1 {
                 
@@ -151,6 +151,7 @@ class GameScene: SKScene, performActionFromController {
                 if touchFlag == true {
                     for i in 0...balls.count - 1 {
                         if balls[i].contains(t.previousLocation(in: self)) {
+                            print("Balls: " + String(balls.count) + ", events: " + String(eventsArr.count))
                             let dict: Dictionary = eventsArr[i].getDict()
                             NotificationCenter.default.post(name: NSNotification.Name("eventSegue"), object: dict)
                         }
