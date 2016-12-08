@@ -18,6 +18,7 @@ import GameplayKit
 extension GameViewController {
     @objc func goToEventDetails(notification: NSNotification) {
         let dict = notification.object as! NSDictionary
+        self.dataDict = dict as! [String : Any]
         self.performSegue(withIdentifier: "eventSegue", sender: self)
     }
 }
@@ -26,6 +27,7 @@ class GameViewController: UIViewController, performSegueFromScene {
     
     @IBOutlet weak var weatherImg: UIImageView!
     @IBOutlet weak var ballsButton: UIButton!
+    var dataDict = [String: Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +132,8 @@ class GameViewController: UIViewController, performSegueFromScene {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "eventSegue" {
-            
+            let destinationVC = segue.destination as! EventDetailsViewController
+            destinationVC.dataDict = self.dataDict
         }
     }
     
