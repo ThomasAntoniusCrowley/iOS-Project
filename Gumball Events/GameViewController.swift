@@ -66,8 +66,7 @@ class GameViewController: UIViewController, performSegueFromScene {
      the returned JSON as an icon code. This code is injected into a URL, which returns a small weather image.
      */
     func dispatchForData() {
-        let location = UserDefaults.standard.string(forKey: "Location")
-        let baseURL = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=" + location! + ",UK&APPID=a225644333c3c9caf0e647bb3385a4cc")!
+        let baseURL = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=Leeds,UK&APPID=a225644333c3c9caf0e647bb3385a4cc")!
         
         //ready dispatch queue for handling data acquisition
         DispatchQueue.global(qos: .userInitiated).async {

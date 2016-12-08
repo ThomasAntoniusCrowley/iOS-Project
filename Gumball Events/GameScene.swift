@@ -23,7 +23,7 @@ extension GameScene {
         //Get data via user defaults - data persists
         let location: String = UserDefaults.standard.string(forKey: "Location")!
         let category: String = UserDefaults.standard.string(forKey: "Category")!
-        let keywords: String = UserDefaults.standard.string(forKey: "Keyword")!
+        let keywords: String = UserDefaults.standard.string(forKey: "Keywords")!
         
         //Reset events stream
         eventsStream = nil
@@ -33,7 +33,10 @@ extension GameScene {
         
         //Create new events stream with acquired data
         eventsStream = EventsStream(Location: location, DateFilter: "Futureo", Keywords: keywords, Category: category, Semaphore: &semaphore)
-        self.getEvents(eventsStream: self.eventsStream!)
+        
+        //Wait for data to be acquired before continuing
+        semaphore.wait(timeout: .distantFuture)
+        self.getEvents(eventsStream: eventsStream!)
     }
 }
 
@@ -75,6 +78,7 @@ class GameScene: SKScene, performActionFromController {
         
         //Get event data into array
         eventsArr = eventsStream.events
+        print("Event count: " + String(eventsStream.events.count))
         
         //Count through event array as long as it's not empty
         if eventsArr.count > 0 {
