@@ -31,14 +31,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ue-61-7z8">
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" link="YES" staticText="YES"/>
-                                        </accessibility>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uu-Ha-p9L">
+                                        <state key="normal" title="Open in URL"/>
+                                        <connections>
+                                            <action selector="openInBrowser:" destination="uQ7-mV-aio" eventType="touchUpInside" id="ZRZ-0S-J2a"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cQc-Ed-ym9" secondAttribute="height" multiplier="42:41" id="vmk-BW-phi"/>
@@ -66,9 +64,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="URLButton" destination="5Uu-Ha-p9L" id="CsD-Zf-25s"/>
                         <outlet property="mapView" destination="ppn-9v-HYT" id="oKm-k1-eeb"/>
                         <outlet property="titleLabel" destination="1SS-IE-aHx" id="wFG-xn-An3"/>
-                        <outlet property="urlLabel" destination="5ue-61-7z8" id="If1-py-nbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGl-PG-dAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,6 +227,6 @@
         <image name="gumball.png" width="96" height="203"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="W6J-dq-5sq"/>
+        <segue reference="VKb-fx-aMK"/>
     </inferredMetricsTieBreakers>
 </document>

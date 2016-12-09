@@ -38,7 +38,11 @@ class EventsStream: CustomStringConvertible
     //Returns event stream URL
     func getURL(){
         self.baseAddr = baseAddr + "location=\(city)&date=\(date)&q=\(keywords)&c=\(category)"
-        self.baseURL = URL(string: baseAddr)!
+        if URL(string: baseAddr) != nil {
+            self.baseURL = URL(string: baseAddr)!
+        } else {
+            print("Error: couldn't retrieve URL contents")
+        }
     }
 
     func getTheHeader(){
@@ -128,14 +132,12 @@ class EventsStream: CustomStringConvertible
                         let venue_url: String = jsonEvent["venue_url"]! as! String
                         let venue_address: String = jsonEvent["venue_address"]! as! String
                         let city_name: String = jsonEvent["city_name"]! as! String
-                        let region_name: String = jsonEvent["region_name"]! as! String
-                        let region_abbr: String = jsonEvent["region_abbr"]! as! String
                         let country_name: String = jsonEvent["country_name"]! as! String
                         let latitude: Double = Double(jsonEvent["latitude"]! as! String)!
                         let longitude: Double = Double(jsonEvent["longitude"]! as! String)!
                         
                         //Create event object from parsed data
-                        let eventObj: Event = Event(eventID: id , URLAddress: url , eventTitle: title , eventStartTime: start_time , venueID: venue_id , venueURL: venue_url , venueAddress: venue_address , cityName: city_name , regionName: region_name , regionAbbr: region_abbr, country: country_name , latitude: latitude , longitude: longitude )
+                        let eventObj: Event = Event(eventID: id , URLAddress: url , eventTitle: title , eventStartTime: start_time , venueID: venue_id , venueURL: venue_url , venueAddress: venue_address , cityName: city_name, country: country_name , latitude: latitude , longitude: longitude )
                         self.events.append(eventObj)
                     }
                     

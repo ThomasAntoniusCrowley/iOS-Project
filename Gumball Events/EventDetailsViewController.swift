@@ -14,8 +14,8 @@ import MapKit
 class EventDetailsViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var URLButton: UIButton!
     
     var dataDict = [String: Any]()
     var location: CLLocation? = nil
@@ -27,9 +27,8 @@ class EventDetailsViewController: UIViewController {
         
         if dataDict != nil {
             
-            //Set title & rl label text
+            //Set title
             titleLabel.text = dataDict["title"] as! String?
-            urlLabel.text = dataDict["url"] as! String?
             
             //Set map data
             location = CLLocation(latitude: dataDict["latitude"] as! CLLocationDegrees, longitude: dataDict["longitude"] as! CLLocationDegrees)
@@ -40,6 +39,11 @@ class EventDetailsViewController: UIViewController {
         }
     }
 
+    @IBAction func openInBrowser(_ sender: AnyObject) {
+        if let url = NSURL(string: dataDict["url"] as! String) {
+            UIApplication.shared.openURL(url as URL)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
