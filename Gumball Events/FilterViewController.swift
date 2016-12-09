@@ -13,6 +13,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var keywordsField: UITextField!
     @IBOutlet weak var catPicker: UIPickerView!
     @IBOutlet weak var catField: UITextField!
+    @IBOutlet weak var locationField: UITextField!
     
     var switchArr: [String] = []
     var categories: [String] = []
@@ -23,7 +24,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         
         //Data list for picker
-        categories = ["music", "weeks", "hours", "minutes", "seconds"]
+        categories = ["music", "comedy", "family", "sports", "education"]
         
         //Configure UI components
         self.catField.isUserInteractionEnabled = true
@@ -63,9 +64,15 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //Called before transition to different view controller - used to send data over segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        UserDefaults.standard.set("Leeds", forKey: "Location")
-        UserDefaults.standard.set(catField.text, forKey: "Category")
-        UserDefaults.standard.set(keywordsField.text, forKey: "Keywords")
+        if (locationField.text != nil) {
+            if (catField.text != nil) {
+                if (keywordsField.text != nil) {
+                    UserDefaults.standard.set(locationField.text, forKey: "Location")
+                    UserDefaults.standard.set(catField.text, forKey: "Category")
+                    UserDefaults.standard.set(keywordsField.text, forKey: "Keywords")
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

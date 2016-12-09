@@ -71,7 +71,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HT2-up-JcE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rEK-6O-ZtH">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zlk-lG-KyH">
@@ -155,6 +155,7 @@
                         <outlet property="catField" destination="gHd-c4-jiX" id="T3Q-dJ-7qm"/>
                         <outlet property="catPicker" destination="nLy-0m-uUo" id="am9-Xg-Y0k"/>
                         <outlet property="keywordsField" destination="Ata-Fh-Jab" id="ujb-Gt-O3U"/>
+                        <outlet property="locationField" destination="mL4-nr-Vb0" id="2So-zw-G1h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJq-2c-igj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,7 +171,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ty8-q6-ag6">
