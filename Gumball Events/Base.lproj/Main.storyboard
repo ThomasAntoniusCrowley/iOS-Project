@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uu-Ha-p9L">
-                                        <state key="normal" title="Open in URL"/>
+                                        <state key="normal" title="Get more info..."/>
                                         <connections>
                                             <action selector="openInBrowser:" destination="uQ7-mV-aio" eventType="touchUpInside" id="ZRZ-0S-J2a"/>
                                         </connections>
