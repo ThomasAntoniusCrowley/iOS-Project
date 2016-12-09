@@ -21,9 +21,18 @@ extension GameScene {
     @objc func getBalls() {
         
         //Get data via user defaults - data persists
-        let location: String = UserDefaults.standard.string(forKey: "Location")!
-        let category: String = UserDefaults.standard.string(forKey: "Category")!
-        let keywords: String = UserDefaults.standard.string(forKey: "Keywords")!
+        guard let location: String = UserDefaults.standard.string(forKey: "Location") else {
+            print("Error: Unable to access filter data")
+            return
+        }
+        guard let category: String = UserDefaults.standard.string(forKey: "Category") else {
+            print("Error: Unable to access filter data")
+            return
+        }
+        guard let keywords: String = UserDefaults.standard.string(forKey: "Keywords") else {
+            print("Error: Unable to access filter data")
+            return
+        }
         
         //Reset events stream
         eventsStream = nil
