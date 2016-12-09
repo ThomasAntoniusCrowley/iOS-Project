@@ -123,8 +123,8 @@ class GameViewController: UIViewController, performSegueFromScene {
                 
                 //Parse image data and create UIImageView object
                 let imageData:NSData = NSData(contentsOf: imgUrl!)!
-                let imageView = UIImageView(frame: CGRect(x:0, y:0, width:200, height:200))
-                imageView.center = self.view.center
+                let imageView = UIImageView(frame: CGRect(x:0, y:0, width:60, height:60))
+//                imageView.center = self.view.center
                 
                 //Update UI on main dispatch queue
                 DispatchQueue.main.async {

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,27 +20,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ppn-9v-HYT">
-                                <frame key="frameInset" minX="75" minY="213" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ppn-9v-HYT">
+                                <frame key="frameInset" minX="16" minY="293" width="343" height="316"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1v-U9-pmO">
-                                <frame key="frameInset" minX="273" minY="637" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Close"/>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cQc-Ed-ym9">
-                                <frame key="frameInset" minX="174" minY="20" width="42" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cQc-Ed-ym9">
+                                <frame key="frameInset" minX="174" minY="20" width="333" height="325"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SS-IE-aHx">
-                                        <frame key="frameInset" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SS-IE-aHx">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ue-61-7z8">
-                                        <frame key="frameInset" minY="21" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ue-61-7z8">
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                         </accessibility>
@@ -48,9 +40,30 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cQc-Ed-ym9" secondAttribute="height" multiplier="42:41" id="vmk-BW-phi"/>
+                                </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1v-U9-pmO">
+                                <frame key="frameInset" minX="168" minY="617" width="39" height="30"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="VKb-fx-aMK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WLt-8w-WXx" firstAttribute="top" secondItem="C1v-U9-pmO" secondAttribute="bottom" constant="5" id="5g5-ql-jD0"/>
+                            <constraint firstItem="ppn-9v-HYT" firstAttribute="trailing" secondItem="3Hv-BH-8E0" secondAttribute="trailingMargin" constant="5" id="NaA-rK-bNe"/>
+                            <constraint firstItem="C1v-U9-pmO" firstAttribute="top" secondItem="ppn-9v-HYT" secondAttribute="bottom" constant="5" id="Oyf-4X-CtH"/>
+                            <constraint firstItem="C1v-U9-pmO" firstAttribute="centerX" secondItem="3Hv-BH-8E0" secondAttribute="centerX" id="Pcg-KN-cZN"/>
+                            <constraint firstItem="ppn-9v-HYT" firstAttribute="top" secondItem="cQc-Ed-ym9" secondAttribute="bottom" constant="5" id="TpW-tI-aAD"/>
+                            <constraint firstItem="cQc-Ed-ym9" firstAttribute="top" secondItem="DOo-ho-yJy" secondAttribute="bottom" constant="10" id="a2i-Iq-8qu"/>
+                            <constraint firstItem="ppn-9v-HYT" firstAttribute="leading" secondItem="3Hv-BH-8E0" secondAttribute="leadingMargin" constant="5" id="okx-q4-Ifd"/>
+                            <constraint firstItem="cQc-Ed-ym9" firstAttribute="leading" secondItem="3Hv-BH-8E0" secondAttribute="leadingMargin" constant="5" id="omL-Sp-fpW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cQc-Ed-ym9" secondAttribute="trailing" constant="5" id="put-po-bw4"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="ppn-9v-HYT" id="oKm-k1-eeb"/>
@@ -60,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGl-PG-dAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-894" y="-701"/>
+            <point key="canvasLocation" x="-894.43359374999989" y="-701.24450951683741"/>
         </scene>
         <!--FilterView-->
         <scene sceneID="a0c-uF-T3D">
@@ -80,7 +93,7 @@
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="lW3-vX-whi">
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keywords    " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omy-zS-ijn">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omy-zS-ijn">
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -215,4 +228,7 @@
     <resources>
         <image name="gumball.png" width="96" height="203"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="W6J-dq-5sq"/>
+    </inferredMetricsTieBreakers>
 </document>
