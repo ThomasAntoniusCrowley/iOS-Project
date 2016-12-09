@@ -1,5 +1,7 @@
 //
 //  EventDetailsViewController.swift
+//  View controller handling the event details view. Presents user with
+//  event title, event url and map info.
 //  Gumball Events
 //
 //  Created by Joshua Crinall [sc14jrc] on 08/12/2016.
@@ -19,6 +21,7 @@ class EventDetailsViewController: UIViewController {
     var location: CLLocation? = nil
     let region: CLLocationDistance = 1000
     
+    //Called once view has loaded. Used to initialise view components.
     override func viewDidLoad() {
         super.viewDidLoad()
         
