@@ -2,8 +2,7 @@
 ## Joshua Crinall & Thomas Crowley
 <br />
 <br />
-<br />
-Events API Documentation:  http://api.eventful.com/docs
+Events API Documentation:  http://api.eventful.com/docs<br />
 OpenWeatherMap API Documentation:  https://openweathermap.org/current
 <br />
 eventful username: sc14talcbf8ef
