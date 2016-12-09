@@ -3,9 +3,9 @@
 <br />
 <br />
 Events API Documentation:  http://api.eventful.com/docs<br />
-OpenWeatherMap API Documentation:  https://openweathermap.org/current
+OpenWeatherMap API Documentation:  https://openweathermap.org/current<br />
 <br />
-eventful username: sc14talcbf8ef
+eventful username: sc14talcbf8ef<br />
 <br />
 Welcome to Gumball Events! <br />
 Gumball events is an iOS app specialising in the ability to quickly pull local
