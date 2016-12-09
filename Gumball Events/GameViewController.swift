@@ -104,8 +104,7 @@ class GameViewController: UIViewController, performSegueFromScene {
                                 semaphore.signal()
                                 print(iconCode)
                             } catch {
-                                print("error in JSONSerialization")
-                                
+                                print("error in JSONSerialization")                                
                             }
                         }
                     }).resume()

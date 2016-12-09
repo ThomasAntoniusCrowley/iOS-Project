@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		037EF8811DFA2DEC003F09BC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24087891DF09B6200CCE0A6 /* GameViewController.swift */; };
 		03F584AF1DF9AE7800636231 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F584AD1DF9AE7800636231 /* EventDetailsViewController.swift */; };
 		03F584B01DF9AE7800636231 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F584AE1DF9AE7800636231 /* EventDetailsViewController.xib */; };
 		D20DF4D41DF3253C00B8FA07 /* EventsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20DF4D31DF3253C00B8FA07 /* EventsStream.swift */; };
@@ -324,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037EF8811DFA2DEC003F09BC /* GameViewController.swift in Sources */,
 				D24087A81DF09B6200CCE0A6 /* Gumball_EventsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

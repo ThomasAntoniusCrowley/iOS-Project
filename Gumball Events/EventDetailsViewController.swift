@@ -25,12 +25,19 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleLabel.text = dataDict["title"] as! String?
-        urlLabel.text = dataDict["url"] as! String?
-        
-        location = CLLocation(latitude: dataDict["latitude"] as! CLLocationDegrees, longitude: dataDict["longitude"] as! CLLocationDegrees)
-        setMapLocation(location: location!)
-        print(dataDict)
+        if dataDict != nil {
+            
+            //Set title & rl label text
+            titleLabel.text = dataDict["title"] as! String?
+            urlLabel.text = dataDict["url"] as! String?
+            
+            //Set map data
+            location = CLLocation(latitude: dataDict["latitude"] as! CLLocationDegrees, longitude: dataDict["longitude"] as! CLLocationDegrees)
+            setMapLocation(location: location!)
+            print(dataDict)
+        } else {
+            titleLabel.text = "Error: cannot retrieve event data dictionary"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,9 +46,12 @@ class EventDetailsViewController: UIViewController {
     }
     
     func setMapLocation(location: CLLocation) {
+        
+        //Set map view region
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, region * 2.0, region * 2.0)
         mapView.setRegion(viewRegion, animated: true)
         
+        //Add marker to map
         let point: MKPointAnnotation = MKPointAnnotation()
         point.coordinate = location.coordinate
         mapView.addAnnotation(point)

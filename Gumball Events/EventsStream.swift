@@ -28,7 +28,7 @@ class EventsStream: CustomStringConvertible
     var events: [Event] = []
     var semaphore: DispatchSemaphore
     var baseAddr: String = "http://api.eventful.com/json/events/search?app_key=2Qm4LQs466gpMpnV&"
-    var baseURL: URL? // = URL(string: "")!
+    var baseURL: URL?
     
     //Returns number of local events
     var description: String{
@@ -151,7 +151,7 @@ class EventsStream: CustomStringConvertible
     //initialise class variables
     init(Location: String, DateFilter: String, Keywords: String, Category: String, Semaphore: inout DispatchSemaphore) {
         
-        //Create semaphore to alert UI when asynchronous tasks have completedt
+        //Create semaphore to alert UI when asynchronous tasks have completed
         self.semaphore = Semaphore
         
         //Set query data

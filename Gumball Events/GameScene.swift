@@ -36,7 +36,12 @@ extension GameScene {
         
         //Wait for data to be acquired before continuing
         semaphore.wait(timeout: .distantFuture)
-        self.getEvents(eventsStream: eventsStream!)
+        
+        if eventsStream != nil {
+            self.getEvents(eventsStream: eventsStream!)
+        } else {
+            print("Error instantiating EventsStream object")
+        }
     }
 }
 
